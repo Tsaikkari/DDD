@@ -15,31 +15,31 @@ const Profile = () => {
 
   const { user, isLoading } = useContext(AuthContext)
 
+  const storedToken = localStorage.getItem('authToken')
+
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!user) {
-      console.log('no user id')
-      //navigate('/login')
-    }
     axios
-      .get(`/api/users`)
+      .get(`/api/users/`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
-        console.log(response, 'RES')
-        const { name, email, password } = response.data
+        const profileUser = response.data.find((x) => x._id === user._id)
+        const { name, email, password } = profileUser
         setName(name)
         setEmail(email)
         setPassword(password)
       })
       .catch((err) => console.log(err))
-  }, [user])
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const updateUser = { email, password, name }
 
     axios
-      .post(`/api/users`, updateUser)
+      .post(`/api/users(${user._id})`, updateUser)
       .then((res) => {
         console.log(res)
       })
@@ -49,10 +49,9 @@ const Profile = () => {
       })
   }
 
-  console.log(user, 'user in profile')
   return (
     <FormContainer>
-      <h1 className='m-4'>Update</h1>
+      <h1 className='m-4'>Update Your Info</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
@@ -82,7 +81,7 @@ const Profile = () => {
           ></Form.Control>
         </Form.Group>
         <Button type='submit' className='save-btn' variant=''>
-          Sign Up
+          Update
         </Button>
       </Form>
       {isLoading && <h3>Loading ...</h3>}

@@ -21,7 +21,7 @@ export default function EditProject() {
         setDescription(description)
       })
       .catch((err) => console.log(err))
-  }, [id])
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
