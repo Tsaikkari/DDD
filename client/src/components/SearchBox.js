@@ -11,6 +11,7 @@ const SearchBox = ({ videos }) => {
   const handleSearch = (event) => {
     console.log(event.target.value)
     let searchVideo = event.target.value
+    // TODO: fix
     let filteredVideos = videos.filter((video) => {
       return video.title.toLowerCase().includes(searchVideo.toLowerCase())
     })

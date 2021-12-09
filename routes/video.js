@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
     res.status(200).json(videos)
     console.log(videos)
   } catch (err) {
-    next(new Error(err))
+    next(new Error(err.message))
   }
 })
 
@@ -30,7 +30,7 @@ router.post('/', async (req, res, next) => {
     })
     res.status(201).json(video)
   } catch (err) {
-    next(new Error(err))
+    next(new Error(err.message))
   }
 })
 
@@ -47,15 +47,19 @@ router.get('/:id', async (req, res, next) => {
     }
     res.status(404).json(video)
   } catch (err) {
-    next(new Error(err))
+    next(new Error(err.message))
   }
 })
 
 // delete video /api/videos/:id
-router.delete('/:id', (req, res, next) => {
-  Video.findByIdAndDelete(req.params.id).then(() => {
-    res.status(200).json({ message: 'video deleted' })
-  })
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await Video.findByIdAndDelete(req.params.id).then(() => {
+      res.status(200).json({ message: 'video deleted' })
+    })
+  } catch (err) {
+    next(new Error(err.message))
+  }
 })
 
 module.exports = router
