@@ -35,10 +35,16 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const updateUser = { email, password, name }
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${storedToken}`,
+      },
+    }
+    const updateUser = { email, password, name, user }
 
     axios
-      .post(`/api/users(${user._id})`, updateUser)
+      .post(`/api/users/${user._id}`, updateUser, config)
       .then((res) => {
         console.log(res)
       })

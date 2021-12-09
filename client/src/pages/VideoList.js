@@ -32,9 +32,13 @@ const VideoList = () => {
     <div className='video-container'>
       <AddVideo refreshVideos={getVideos} />
       <SearchBox videos={videos} />
-      {videos.map((video) => (
-        <Video key={video._id} title={video.title} url={video.url} />
-      ))}
+      <Row>
+        {videos.map((video) => (
+          <Col key={video._id}>
+            <Video key={video._id} title={video.title} url={video.url} />
+          </Col>
+        ))}
+      </Row>
     </div>
   )
 }

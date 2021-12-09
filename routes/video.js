@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const { title, url, user } = req.body
-    if (!url) {
+    if (!url || !user || !title) {
       res.status(400)
       return
     }
@@ -28,7 +28,6 @@ router.post('/', async (req, res, next) => {
       url,
       user: userInfo.id,
     })
-    console.log(video, 'VIDEEEEEOOOO')
     res.status(201).json(video)
   } catch (err) {
     next(new Error(err))

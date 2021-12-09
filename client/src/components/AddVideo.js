@@ -10,7 +10,6 @@ export default function AddVideo(props) {
   const [url, setUrl] = useState('')
 
   const { user } = useContext(AuthContext)
-  console.log(user, 'user')
 
   const storedToken = localStorage.getItem('authToken')
 
@@ -32,7 +31,6 @@ export default function AddVideo(props) {
         },
       }
       const video = { title, url, user }
-      console.log(video, 'VIDEO')
       await axios.post('/api/videos', video, config)
       setTitle('')
       setUrl('')
