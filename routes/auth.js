@@ -41,7 +41,7 @@ router.post('/signup', async (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, salt)
 
     const user = await User.create({ email, password: hashedPassword, name })
-    console.log(user, 'user')
+    console.log(user, 'user created')
 
     res.status(201).json({ user })
   } catch (err) {
@@ -93,7 +93,7 @@ router.get('/verify', isAuthenticated, async (req, res, next) => {
   try {
     // if the token is valid we can access it on : req.payload
     res.status(200).json(req.payload)
-    console.log(req.payload)
+    console.log('USER ID', req.payload._id)
   } catch (err) {
     next(new Error(err))
   }
