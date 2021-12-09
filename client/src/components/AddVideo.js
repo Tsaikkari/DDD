@@ -8,26 +8,9 @@ import { AuthContext } from '../context/auth'
 export default function AddVideo(props) {
   const [title, setTitle] = useState('')
   const [url, setUrl] = useState('')
-  const [id, setId] = useState('')
 
   const { user } = useContext(AuthContext)
   console.log(user, 'user')
-
-  const storedToken = localStorage.getItem('authToken')
-
-  useEffect(() => {
-    axios
-      .get(`/api/users/`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        const profileUser = response.data.find((x) => x._id === user._id)
-        const { _id } = profileUser
-        setId(profileUser)
-        console.log(profileUser, 'profileUser')
-      })
-      .catch((err) => console.log(err))
-  }, [])
 
   const handleUrl = (event) => {
     setUrl((url) => (url = event.target.value))
@@ -40,7 +23,7 @@ export default function AddVideo(props) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const video = { title, url, id }
+      const video = { title, url, user: user._id }
       await axios.post('/api/videos', video)
       setTitle('')
       setUrl('')
