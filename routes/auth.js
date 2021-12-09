@@ -43,12 +43,6 @@ router.post('/signup', async (req, res, next) => {
     const user = await User.create({ email, password: hashedPassword, name })
     console.log(user, 'user')
 
-    // // Deconstruct the newly created user object to omit the password
-    // const { email, name, _id } = user
-
-    // // Create a new object that doesn't expose the password
-    // const createdUser = { email, name, _id }
-
     res.status(201).json({ user })
   } catch (err) {
     next(new Error(err))

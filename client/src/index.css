@@ -2,6 +2,7 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 1.15rem;
   margin: 0;
+  overflow-x: hidden;
 }
 
 /*navbar*/
@@ -12,15 +13,11 @@ body {
 }
 
 .bg-light {
-  background: linear-gradient(
-    60deg,
-    #ffffff 0%,
-    rgb(247, 241, 241) 100%
-  ) !important;
+  background: #fff;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: rgb(78, 55, 55) !important;
+  color: #543552;
 }
 
 .navbar-light .navbar-brand {
@@ -35,7 +32,72 @@ body {
 /*form button*/
 .save-btn {
   background-color: black !important;
-  color: #fff !important;
+  color: pink !important;
   width: 100%;
   margin: 1.9rem 0 0.1rem;
+}
+
+/*profile*/
+.greeting {
+  color: #fff;
+  font-size: 4rem;
+  font-weight: 600;
+  padding-top: 3rem;
+  margin-bottom: 0;
+  background: #41334d;
+}
+
+.profile-row {
+  background: #41334d;
+}
+
+.create {
+  color: pink;
+  padding: 0.8rem 0 3.2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.info-col {
+  background: #41334d;
+  margin: 5.9rem 0 0 2rem;
+  border-radius: 6px;
+}
+
+.form-col {
+  padding: 5.2rem 0;
+  color: #fff;
+}
+
+.form-header {
+  color: blue;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+}
+
+.group .list-group-item {
+  background: linear-gradient(
+    60deg,
+    rgb(65, 51, 77) 0%,
+    #bfa4bd 50%,
+    rgb(65, 51, 77) 100%
+  ) !important;
+  border-radius: 0px;
+  height: 5.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.list-group-item a {
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+/*footer*/
+footer {
+  background: #41334d;
 }

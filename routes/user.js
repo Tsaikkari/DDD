@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 
 module.exports = router
 
-// get user profile /api/users/profile
+// get user profile /api/users/:id
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id).select('-password')

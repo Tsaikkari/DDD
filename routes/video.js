@@ -1,0 +1,58 @@
+const router = require('express').Router()
+const Video = require('../models/Video.model')
+
+// get all videos /api/videos
+router.get('/', async (req, res, next) => {
+  try {
+    const videos = await Video.find({}).populate('user', 'id name')
+    res.status(200).json(videos)
+    console.log(videos)
+  } catch (err) {
+    next(new Error(err))
+  }
+})
+
+// add a video /api/videos
+router.post('/', async (req, res, next) => {
+  try {
+    const { title, url } = req.body
+    if (!url) {
+      res.status(400)
+      return
+    }
+    const video = await Video.create({
+      title,
+      url,
+      user: req.user._id,
+    })
+    res.status(201).json(video)
+  } catch (err) {
+    next(new Error(err))
+  }
+})
+
+// get a video /api/video/:id
+router.get('/:id', async (req, res, next) => {
+  try {
+    const video = await Video.findById(req.params.id).populate(
+      'user',
+      'name email'
+    )
+    if (!mongoose.Types.ObjectId.isValid(video._id)) {
+      res.status(400).json({ message: 'Video id is not valid' })
+      return
+    }
+    res.status(404).json(video)
+  } catch (err) {
+    next(new Error(err))
+  }
+})
+
+// delete video /api/videos/:id
+router.delete('/:id', (req, res, next) => {
+  Video.findByIdAndDelete(req.params.id).then(() => {
+    res.status(200).json({ message: 'video deleted' })
+  })
+})
+
+module.exports = router

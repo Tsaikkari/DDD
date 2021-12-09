@@ -6,7 +6,7 @@ const videoSchema = new Schema(
       type: String,
       required: true,
     },
-    videoPath: {
+    url: {
       type: String,
       required: true,
       trim: true,

@@ -5,7 +5,7 @@ import Signup from './pages/Signup'
 import Login from './pages/Login'
 import Navbar from './components/Header'
 import Profile from './pages/Profile'
-import Video from './pages/Video'
+import VideoList from './pages/VideoList'
 import VisionBoard from './pages/VisionBoard'
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/videos' element={<Profile />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/videos' element={<VideoList />} />
+        <Route path='/visions' element={<VisionBoard />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
       </Routes>
