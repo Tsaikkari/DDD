@@ -43,27 +43,29 @@ export default function AddVideo(props) {
 
   return (
     <>
-      <h1>Add a Video</h1>
-      <Form onSubmit={handleSubmit} inline>
-        <Form.Group controlId='title'>
-          <Form.Label>Title</Form.Label>
+      <h4 className='add-video-header'>Add a Video</h4>
+      <Form onSubmit={handleSubmit} className='video-form'>
+        <Form.Group prepend controlId='title' className='mb-3'>
           <Form.Control
             type='text'
-            placeholder='Enter Title'
+            placeholder='Give a title for the video'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-          ></Form.Control>
+          />
         </Form.Group>
-        <Form.Group controlId='url'>
-          <Form.Label>YouTube Video URL</Form.Label>
+        <Form.Group controlId='url' className='mb-3 url-input'>
           <Form.Control
             type='text'
-            placeholder='Enter URL'
+            placeholder='Enter YouTube Video URL'
             value={url}
             onChange={handleUrl}
           ></Form.Control>
         </Form.Group>
-        <Button type='submit'>Add Video</Button>
+        <Form.Group>
+          <Button type='submit' className='save-btn add-video-btn'>
+            Save
+          </Button>
+        </Form.Group>
       </Form>
     </>
   )

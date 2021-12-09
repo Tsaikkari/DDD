@@ -97,6 +97,33 @@ body {
   font-weight: 600;
 }
 
+/*add video*/
+.video-container {
+  margin: 1rem 3.8rem;
+}
+.video-form {
+  display: flex;
+}
+
+.url-input {
+  margin-left: 0.8rem;
+}
+
+.add-video-header {
+  display: flex;
+}
+
+.add-video-btn {
+  max-width: 92.5%;
+  margin: 0 0 0 0.4rem;
+}
+
+/*search-box*/
+.search-input {
+  margin: 2.6rem 0;
+  max-width: 100%;
+}
+
 /*footer*/
 footer {
   background: #41334d;

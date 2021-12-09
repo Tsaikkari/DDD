@@ -26,14 +26,16 @@ const SearchBox = ({ videos }) => {
   return (
     <div>
       <Form inline>
-        <Form.Control
-          type='text'
-          name='searchWord'
-          value={searchWord}
-          onChange={handleSearch}
-          placeholder='Search Videos...'
-          className='mr-sm-3'
-        ></Form.Control>
+        <Form.Group className='mb-3'>
+          <Form.Control
+            type='text'
+            name='searchWord'
+            value={searchWord}
+            onChange={handleSearch}
+            placeholder='Search video by its title'
+            className='mr-sm-3 search-input'
+          ></Form.Control>
+        </Form.Group>
       </Form>
     </div>
   )

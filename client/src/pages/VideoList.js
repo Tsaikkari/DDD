@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Button, Form } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import axios from 'axios'
 
 import Message from '../components/Message'
@@ -30,8 +30,14 @@ const VideoList = () => {
 
   return (
     <div className='video-container'>
-      <AddVideo refreshVideos={getVideos} />
-      <SearchBox videos={videos} />
+      <Row>
+        <Col>
+          <AddVideo refreshVideos={getVideos} videos={videos} />
+        </Col>
+        <Col>
+          <SearchBox videos={videos} />
+        </Col>
+      </Row>
       <Row>
         {videos.map((video) => (
           <Col key={video._id}>

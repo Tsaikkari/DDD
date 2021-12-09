@@ -12,8 +12,6 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-module.exports = router
-
 // TODO: fix: this router does not exist ?!
 // update user /api/users/:id
 router.put('/:id', async (req, res, next) => {
@@ -52,3 +50,5 @@ router.delete('/:id', async (req, res, next) => {
     next(new Error(error.message))
   }
 })
+
+module.exports = router
