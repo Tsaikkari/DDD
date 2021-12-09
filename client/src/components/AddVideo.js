@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
 
@@ -12,6 +12,8 @@ export default function AddVideo(props) {
   const { user } = useContext(AuthContext)
   console.log(user, 'user')
 
+  const storedToken = localStorage.getItem('authToken')
+
   const handleUrl = (event) => {
     setUrl((url) => (url = event.target.value))
     const replace = 'embed/'
@@ -23,8 +25,15 @@ export default function AddVideo(props) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const video = { title, url, user: user._id }
-      await axios.post('/api/videos', video)
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${storedToken}`,
+        },
+      }
+      const video = { title, url, user }
+      console.log(video, 'VIDEO')
+      await axios.post('/api/videos', video, config)
       setTitle('')
       setUrl('')
       // this triggers a function in VideoList

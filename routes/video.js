@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Video = require('../models/Video.model')
+const User = require('../models/User.model')
 
 // get all videos /api/videos
 router.get('/', async (req, res, next) => {
@@ -15,16 +16,19 @@ router.get('/', async (req, res, next) => {
 // add a video /api/videos
 router.post('/', async (req, res, next) => {
   try {
-    const { title, url } = req.body
+    const { title, url, user } = req.body
     if (!url) {
       res.status(400)
       return
     }
+
+    const userInfo = await User.findById(user._id)
     const video = await Video.create({
       title,
       url,
-      user: req.user._id,
+      user: userInfo.id,
     })
+    console.log(video, 'VIDEEEEEOOOO')
     res.status(201).json(video)
   } catch (err) {
     next(new Error(err))
