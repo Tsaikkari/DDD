@@ -11,7 +11,6 @@ import VisionBoard from './pages/VisionBoard'
 function App() {
   return (
     <div className='App'>
-      {/* <JWTest /> */}
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
