@@ -23,7 +23,6 @@ const Profile = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log(response, 'response get user profile')
         setName(response.data.name)
         setEmail(response.data.email)
       })
@@ -38,16 +37,13 @@ const Profile = () => {
         Authorization: `Bearer ${storedToken}`,
       },
     }
-    setName(name)
-    setEmail(email)
-    setPassword(password)
 
     const updateUser = { email, password, name }
 
     axios
-      .post(`/api/users/${user._id}`, updateUser, config)
+      .put(`/api/users/${user._id}`, updateUser, config)
       .then((res) => {
-        console.log(res)
+        console.log(res, 'RES')
       })
       .catch((err) => {
         const errorMsg = err.response.data.message

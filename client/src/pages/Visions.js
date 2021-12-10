@@ -1,21 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
-import AddVisionBoard from '../components/AddVisionBoard'
+import AddBoard from '../components/AddBoard'
 import VisionsHeader from '../components/VisionsHeader'
 import VisionBoard from '../components/VisionBoard'
 
 const Visions = () => {
   const [boards, setBoards] = useState([])
-  const [addVisionBoard, setAddVisionBoard] = useState(false)
+  const [addBoard, setAddBoard] = useState(false)
   const [addImgBox, setAddImgBox] = useState(false)
   //add search by title or date
 
-  const addBoard = (board) => {
+  const storedToken = localStorage.getItem('authToken')
+
+  const getVisionBoards = () => {
+    axios
+      .get('/api/visions/user-visions', {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        console.log(response)
+        setBoards(response.data)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    getVisionBoards()
+  }, [])
+
+  const addNewBoard = (board) => {
     setBoards(board)
   }
 
   const handleShowVisionBoardForm = () => {
-    setAddVisionBoard(!addVisionBoard)
+    setAddBoard(!addBoard)
   }
 
   const handleShowImgBoxForm = () => {
@@ -33,13 +52,14 @@ const Visions = () => {
           <VisionBoard
             key={board._id}
             title={board.title}
-            addBoard={addBoard}
+            refreshVisionBoards={getVisionBoards}
           />
         ))}
-        {addVisionBoard && (
-          <AddVisionBoard
-            addVisionBoard={addVisionBoard}
-            setAddVisionBoard={setAddVisionBoard}
+        {addBoard && (
+          <AddBoard
+            addNewBoard={addNewBoard}
+            addBoard={addBoard}
+            setAddBoard={setAddBoard}
           />
         )}
       </main>

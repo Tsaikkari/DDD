@@ -41,7 +41,7 @@ const VideoList = () => {
       <Row>
         {videos.map((video) => (
           <Col key={video._id}>
-            <Video key={video._id} title={video.title} url={video.url} />
+            <Video title={video.title} url={video.url} />
           </Col>
         ))}
       </Row>

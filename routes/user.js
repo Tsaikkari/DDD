@@ -12,11 +12,10 @@ router.get('/', isAuthenticated, async (req, res, next) => {
   }
 })
 
-// TODO: this gives {}
 // get user profile /api/users/profile
 router.get('/profile', isAuthenticated, async (req, res, next) => {
   try {
-    const user = await User.find({ _id: req.payload._id }).select('-password')
+    const user = await User.findById(req.payload._id).select('-password')
 
     if (user) {
       res.status(200).json({
@@ -26,7 +25,6 @@ router.get('/profile', isAuthenticated, async (req, res, next) => {
         isAdmin: user.isAdmin,
       })
     }
-    console.log(user, 'user in terminal get user')
   } catch (error) {
     next(new Error(error.message))
   }
@@ -35,26 +33,12 @@ router.get('/profile', isAuthenticated, async (req, res, next) => {
 // update user /api/users/:id
 router.put('/:id', isAuthenticated, async (req, res, next) => {
   try {
-    const update = req.body
-    const user = await User.find({ user: req.payload })
+    console.log(req.params.id, 'req.params.id')
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    })
 
-    if (!user) {
-      return next(new Error('No user'))
-    }
-
-    if (update.name) {
-      user.name = update.name
-    }
-    if (update.email) {
-      user.email = update.email
-    }
-    if (update.password) {
-      user.password = update.password
-    }
-
-    await User.findByIdAndUpdate(user._id, user, { new: true })
-
-    res.status(200).json(user)
+    res.status(200).json(updatedUser)
   } catch (err) {
     next(new Error(err.message))
   }
