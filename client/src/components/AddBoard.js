@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
+import AddImgBox from './AddImgBox'
 
 const AddBoard = ({
   addBoard,
@@ -65,7 +66,7 @@ const AddBoard = ({
               onChange={(e) => setBoard(e.target.value)}
             />
           </Form.Group>
-          TODO: loop over boxes
+          <AddImgBox />
           <Button type='submit'>Save</Button>
         </Form>
       )}
