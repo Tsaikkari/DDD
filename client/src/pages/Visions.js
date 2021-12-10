@@ -1,7 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import AddVisionBoard from '../components/AddVisionBoard'
+import VisionsHeader from '../components/VisionsHeader'
+import VisionBoard from '../components/VisionBoard'
 
 const Visions = () => {
-  return <div></div>
+  const [boards, setBoards] = useState([])
+  const [addVisionBoard, setAddVisionBoard] = useState(false)
+  //add search by title or date
+
+  const addBoard = (board) => {
+    setBoards(board)
+  }
+
+  const handleShow = () => {
+    setAddVisionBoard(!addVisionBoard)
+  }
+
+  return (
+    <div>
+      <VisionsHeader handleShow={handleShow} />
+      <main>
+        {boards.map((board) => (
+          <VisionBoard
+            key={board._id}
+            title={board.title}
+            addBoard={addBoard}
+          />
+        ))}
+        {addVisionBoard && (
+          <AddVisionBoard
+            addVisionBoard={addVisionBoard}
+            setAddVisionBoard={setAddVisionBoard}
+          />
+        )}
+      </main>
+    </div>
+  )
 }
 
 export default Visions

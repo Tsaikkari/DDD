@@ -6,7 +6,7 @@ import Login from './pages/Login'
 import Navbar from './components/Header'
 import Profile from './pages/Profile'
 import VideoList from './pages/VideoList'
-import VisionBoard from './pages/VisionBoard'
+import Visions from './pages/Visions'
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/videos' element={<VideoList />} />
-        <Route path='/visions' element={<VisionBoard />} />
+        <Route path='/visions' element={<Visions />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
       </Routes>
