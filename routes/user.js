@@ -33,10 +33,9 @@ router.get('/profile', isAuthenticated, async (req, res, next) => {
 // update user /api/users/:id
 router.put('/:id', isAuthenticated, async (req, res, next) => {
   try {
-    console.log(req.params.id, 'req.params.id')
     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-    })
+    }).select('-password')
 
     res.status(200).json(updatedUser)
   } catch (err) {

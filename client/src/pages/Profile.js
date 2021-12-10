@@ -43,7 +43,7 @@ const Profile = () => {
     axios
       .put(`/api/users/${user._id}`, updateUser, config)
       .then((res) => {
-        console.log(res, 'RES')
+        console.log(res)
       })
       .catch((err) => {
         const errorMsg = err.response.data.message

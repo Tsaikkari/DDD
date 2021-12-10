@@ -4,9 +4,8 @@ import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
 
-const AddBoard = ({ addBoard, setAddBoard, addNewBoard, boxes }) => {
+const AddBoard = ({ addBoard, setAddBoard, addNewBoard, boxes, images }) => {
   const [board, setBoard] = useState({ title: '' })
-  const [imgPath, setImgPath] = useState('')
 
   const { user } = useContext(AuthContext)
 
@@ -27,11 +26,10 @@ const AddBoard = ({ addBoard, setAddBoard, addNewBoard, boxes }) => {
           Authorization: `Bearer ${storedToken}`,
         },
       }
-      const visionBoard = { title: board.title, imgPath: imgPath, user }
+      const visionBoard = { title: board.title, images: images, user }
       await axios.post('/api/videos', visionBoard, config)
       setBoard(null)
-      setImgPath('')
-      //props.refreshVideos()
+      //refreshVideos()
     } catch (err) {
       console.log(err)
     }
