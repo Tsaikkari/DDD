@@ -6,13 +6,13 @@ const { isAuthenticated } = require('./../middleware/jwt.js')
 router.get('/', isAuthenticated, async (req, res, next) => {
   try {
     const users = await User.find()
-    //console.log(users)
     res.status(200).json(users)
   } catch (error) {
     next(new Error(error.message))
   }
 })
 
+// TODO: this gives {}
 // get user profile /api/users/profile
 router.get('/profile', isAuthenticated, async (req, res, next) => {
   try {
@@ -35,7 +35,6 @@ router.get('/profile', isAuthenticated, async (req, res, next) => {
 // update user /api/users/:id
 router.put('/:id', isAuthenticated, async (req, res, next) => {
   try {
-    console.log(req.body)
     const update = req.body
     const user = await User.find({ user: req.payload })
 
