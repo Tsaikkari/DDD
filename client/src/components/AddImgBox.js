@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
 
-const AddImgBox = ({ addBox, setAddBox, addNewImg, refreshBoardAndBoxes }) => {
+const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes }) => {
   const [imgPath, setImgPath] = useState('')
   const [text, setText] = useState('')
 
@@ -12,31 +12,26 @@ const AddImgBox = ({ addBox, setAddBox, addNewImg, refreshBoardAndBoxes }) => {
 
   const storedToken = localStorage.getItem('authToken')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setAddBox(!addBox)
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${storedToken}`,
-      },
+    try {
+      setAddBox(!addBox)
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${storedToken}`,
+        },
+      }
+
+      const newImgBox = { imgPath, text, user }
+
+      await axios.post('/api/imgboxes', newImgBox, config)
+      setImgPath('')
+      setText('')
+      refreshImgBoxes()
+    } catch (err) {
+      console.log(err)
     }
-    const newBoard = { title: 'Vision Board' }
-    const newImgBox = { imgPath, text, user }
-    axios
-      .all([
-        axios.post('/api/imgboxes', newImgBox, config),
-        axios.post('/api/visions', newBoard, config),
-      ])
-      .then(
-        axios.spread((obj1, obj2) => {
-          setImgPath('')
-          setText('')
-          refreshBoardAndBoxes()
-          console.log(obj1, obj2)
-        })
-      )
-      .catch((err) => console.log(err))
   }
 
   return (

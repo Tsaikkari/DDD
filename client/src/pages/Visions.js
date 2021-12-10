@@ -14,27 +14,36 @@ const Visions = () => {
 
   const storedToken = localStorage.getItem('authToken')
 
-  const getVisionBoardsAndImgBoxes = () => {
+  const getVisionBoards = () => {
     axios
-      .all([
-        axios.get('/api/visions/user-visions', {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }),
-        axios.get('/api/imgboxes/user-imgboxes', {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }),
-      ])
-      .then(
-        axios.spread((obj1, obj2) => {
-          setBoards(obj1.data)
-          setBoxes(obj2.data)
-        })
-      )
+      .get('/api/visions/user-visions', {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        console.log(response)
+        setBoards(response.data)
+      })
       .catch((err) => console.log(err))
   }
 
   useEffect(() => {
-    getVisionBoardsAndImgBoxes()
+    getVisionBoards()
+  }, [])
+
+  const getImgBoxes = () => {
+    axios
+      .get('/api/imgboxes/user-imgboxes', {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        console.log(response)
+        setBoxes(response.data)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    getImgBoxes()
   }, [])
 
   const handleShowImgBoxForm = () => {
@@ -48,7 +57,10 @@ const Visions = () => {
         <div className='board-grid'>
           {boards.map((board) => (
             <Container key={board._id}>
-              <VisionBoard boxes={boxes} />
+              <VisionBoard
+                boxes={boxes}
+                refreshVisionBoards={getVisionBoards}
+              />
             </Container>
           ))}
         </div>
@@ -56,8 +68,7 @@ const Visions = () => {
           <AddImgBox
             addBox={addBox}
             setAddBox={setAddBox}
-            boxes={boxes}
-            refreshBoardAndBoxes={getVisionBoardsAndImgBoxes}
+            refreshImgBoxes={getImgBoxes}
           />
         )}
       </main>

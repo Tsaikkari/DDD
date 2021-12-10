@@ -1,10 +1,12 @@
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
 
 import ImgBox from './ImgBox'
 
 const VisionBoard = ({ title, boxes }) => {
-  // add delete
+  // add delete axios.post('/api/visions', newBoard, config),
+  // const newBoard = { title: 'Vision Board' }
+  const handleBoard = () => {}
   return (
     <div class='vision-board'>
       <Row class='img-box-area'>
@@ -15,6 +17,7 @@ const VisionBoard = ({ title, boxes }) => {
         ))}
       </Row>
       <p>{title}</p>
+      <Button onClick={handleBoard}>Save</Button>
     </div>
   )
 }
