@@ -16,8 +16,7 @@ router.get('/', isAuthenticated, async (req, res, next) => {
 // get user profile /api/users/profile
 router.get('/profile', isAuthenticated, async (req, res, next) => {
   try {
-    const user = await User.find({ user: req.payload }).select('-password')
-    console.log(user, 'user in get router')
+    const user = await User.find({ _id: req.payload._id }).select('-password')
 
     if (user) {
       res.status(200).json({
@@ -27,6 +26,7 @@ router.get('/profile', isAuthenticated, async (req, res, next) => {
         isAdmin: user.isAdmin,
       })
     }
+    console.log(user, 'user in terminal get user')
   } catch (error) {
     next(new Error(error.message))
   }

@@ -7,8 +7,9 @@ const AddVisionBoard = ({ addVisionBoard, setAddVisionBoard, addBoard }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     addBoard(visionBoard)
-    // TODO: add the function and request to Visions.js
+    setAddVisionBoard(!addVisionBoard)
   }
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId='title' className='mb-3'>
