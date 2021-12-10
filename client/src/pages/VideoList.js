@@ -14,7 +14,7 @@ const VideoList = () => {
 
   const getVideos = () => {
     axios
-      .get('/api/videos', {
+      .get('/api/videos/user-videos', {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

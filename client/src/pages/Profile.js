@@ -19,13 +19,11 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/users/`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
+      .get(`/api/users/profile`, {
+        headers: { Authorization: `Bearer ${storedToken}`, user },
       })
       .then((response) => {
-        const profileUser = response.data.find((x) => x._id === user._id)
-        const { name, email, password } = profileUser
-        console.log(profileUser, 'profileUser')
+        console.log(response, 'response get user profile')
         setName(name)
         setEmail(email)
         setPassword(password)
@@ -41,7 +39,7 @@ const Profile = () => {
         Authorization: `Bearer ${storedToken}`,
       },
     }
-    const updateUser = { email, password, name, user }
+    const updateUser = { email, password, name }
 
     axios
       .post(`/api/users/${user._id}`, updateUser, config)

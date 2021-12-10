@@ -45,7 +45,7 @@ export default function AddVideo(props) {
     <>
       <h4 className='add-video-header'>Add a Video</h4>
       <Form onSubmit={handleSubmit} className='video-form'>
-        <Form.Group prepend controlId='title' className='mb-3'>
+        <Form.Group controlId='title' className='mb-3'>
           <Form.Control
             type='text'
             placeholder='Give a title for the video'

@@ -26,7 +26,7 @@ const SearchBox = ({ videos }) => {
 
   return (
     <div>
-      <Form inline>
+      <Form>
         <Form.Group className='mb-3'>
           <Form.Control
             type='text'

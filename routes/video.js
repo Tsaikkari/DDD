@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// get logged in user videos /api/user-videos
+// get logged in user videos /api/videos/user-videos
 router.get('/user-videos', isAuthenticated, async (req, res, next) => {
   try {
     const videos = await Video.find({ user: req.payload })

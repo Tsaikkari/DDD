@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const User = require('../models/User.model')
+const { isAuthenticated } = require('./../middleware/jwt.js')
 
 // get users /api/users
-router.get('/', async (req, res, next) => {
+router.get('/', isAuthenticated, async (req, res, next) => {
   try {
     const users = await User.find()
     //console.log(users)
@@ -12,36 +13,56 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// TODO: fix: this router does not exist ?!
-// update user /api/users/:id
-router.put('/:id', async (req, res, next) => {
+// get user profile /api/users/profile
+router.get('/profile', isAuthenticated, async (req, res, next) => {
   try {
-    const { email, password, name, user } = req.body
-    const userInfo = await User.findById(req.params.id)
+    const user = await User.find({ user: req.payload }).select('-password')
+    console.log(user, 'user in get router')
 
-    if (userInfo) {
-      name = req.body.name || user.name
-      email = req.body.email || user.email
-      if (req.body.password) {
-        password = req.body.password
-      }
+    if (user) {
+      res.status(200).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+      })
+    }
+  } catch (error) {
+    next(new Error(error.message))
+  }
+})
+
+// update user /api/users/:id
+router.put('/:id', isAuthenticated, async (req, res, next) => {
+  try {
+    console.log(req.body)
+    const update = req.body
+    const user = await User.find({ user: req.payload })
+
+    if (!user) {
+      return next(new Error('No user'))
     }
 
-    const updatedUser = await userInfo.save()
+    if (update.name) {
+      user.name = update.name
+    }
+    if (update.email) {
+      user.email = update.email
+    }
+    if (update.password) {
+      user.password = update.password
+    }
 
-    res.status(200).json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
-    })
+    await User.findByIdAndUpdate(user._id, user, { new: true })
+
+    res.status(200).json(user)
   } catch (err) {
-    next(new Error(err))
+    next(new Error(err.message))
   }
 })
 
 // delete user /api/users/:id
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAuthenticated, async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id)
     const deletedUser = await User.findByIdAndRemove(user._id)
