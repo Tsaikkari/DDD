@@ -49,15 +49,12 @@ const Visions = () => {
       />
       <main>
         {boards.map((board) => (
-          <VisionBoard
-            key={board._id}
-            title={board.title}
-            refreshVisionBoards={getVisionBoards}
-          />
+          <VisionBoard key={board._id} title={board.title} />
         ))}
         {addBoard && (
           <AddBoard
             addNewBoard={addNewBoard}
+            refreshVisions={getVisionBoards}
             addBoard={addBoard}
             setAddBoard={setAddBoard}
           />

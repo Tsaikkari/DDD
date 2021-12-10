@@ -4,8 +4,14 @@ import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
 
-const AddBoard = ({ addBoard, setAddBoard, addNewBoard, boxes, images }) => {
-  const [board, setBoard] = useState({ title: '' })
+const AddBoard = ({
+  addBoard,
+  setAddBoard,
+  addNewBoard,
+  refreshVisions,
+  boxes,
+}) => {
+  const [board, setBoard] = useState({ title: '', images: boxes })
 
   const { user } = useContext(AuthContext)
 
@@ -26,10 +32,10 @@ const AddBoard = ({ addBoard, setAddBoard, addNewBoard, boxes, images }) => {
           Authorization: `Bearer ${storedToken}`,
         },
       }
-      const visionBoard = { title: board.title, images: images, user }
-      await axios.post('/api/videos', visionBoard, config)
+      const visionBoard = { title: board.title, images: board.images, user }
+      await axios.post('/api/visions', visionBoard, config)
       setBoard(null)
-      //refreshVideos()
+      refreshVisions()
     } catch (err) {
       console.log(err)
     }
@@ -37,31 +43,32 @@ const AddBoard = ({ addBoard, setAddBoard, addNewBoard, boxes, images }) => {
 
   return (
     <>
-      <Form onSubmit={handleAddBoard}>
-        <Form.Group controlId='title' className='mb-3'>
-          <Form.Control
-            type='text'
-            placeholder='Give a title for the vision board'
-            value={board.title}
-            onChange={(e) => setBoard(e.target.value)}
-          />
-        </Form.Group>
-        TODO: loop over boxes
-        <Button type='submit'>Add Vision Board</Button>
-      </Form>
-
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId='title' className='mb-3'>
-          <Form.Control
-            type='text'
-            placeholder='Give a title for the vision board'
-            value={board.title}
-            onChange={(e) => setBoard(e.target.value)}
-          />
-        </Form.Group>
-        TODO: loop over boxes
-        <Button type='submit'>Save</Button>
-      </Form>
+      {board.images.length === 0 ? (
+        <Form onSubmit={handleAddBoard}>
+          <Form.Group controlId='title' className='mb-3'>
+            <Form.Control
+              type='text'
+              placeholder='Give a title for the vision board'
+              value={board.title}
+              onChange={(e) => setBoard(e.target.value)}
+            />
+          </Form.Group>
+          <Button type='submit'>Add Vision Board</Button>
+        </Form>
+      ) : (
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId='title' className='mb-3'>
+            <Form.Control
+              type='text'
+              placeholder='Give a title for the vision board'
+              value={board.title}
+              onChange={(e) => setBoard(e.target.value)}
+            />
+          </Form.Group>
+          TODO: loop over boxes
+          <Button type='submit'>Save</Button>
+        </Form>
+      )}
     </>
   )
 }

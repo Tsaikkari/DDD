@@ -127,4 +127,9 @@ body {
 /*footer*/
 footer {
   background: #41334d;
+  height: 8rem;
+}
+
+.copyright {
+  margin-top: 4rem;
 }
