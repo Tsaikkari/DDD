@@ -10,7 +10,7 @@ import Footer from '../components/Footer'
 const Profile = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  // const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState(undefined)
 
   const { user, isLoading, isLoggedIn } = useContext(AuthContext)
@@ -38,7 +38,7 @@ const Profile = () => {
       },
     }
 
-    const updateUser = { email, password, name }
+    const updateUser = { email, name }
 
     axios
       .put(`/api/users/${user._id}`, updateUser, config)
@@ -100,15 +100,6 @@ const Profile = () => {
                     placeholder='Enter Email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-                <Form.Group controlId='password'>
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type='password'
-                    placeholder='Enter Password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                   ></Form.Control>
                 </Form.Group>
                 <Button type='submit' className='save-btn' variant=''>

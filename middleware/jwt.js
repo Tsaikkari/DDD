@@ -7,6 +7,16 @@ const isAuthenticated = jwt({
   getToken: getTokenFromHeaders,
 })
 
+const isAdmin = async (req, res, next) => {
+  const user = req.payload
+
+  if (user && user.isAdmin === true) {
+    return next()
+  } else {
+    return next(new Error('Not authorized as an admin'))
+  }
+}
+
 function getTokenFromHeaders(req) {
   if (
     req.headers.authorization &&
