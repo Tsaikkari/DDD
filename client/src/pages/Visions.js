@@ -1,62 +1,63 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Container } from 'react-bootstrap'
 
-import AddBoard from '../components/AddBoard'
+import AddImgBox from '../components/AddImgBox'
 import VisionsHeader from '../components/VisionsHeader'
 import VisionBoard from '../components/VisionBoard'
 
 const Visions = () => {
   const [boards, setBoards] = useState([])
-  const [addBoard, setAddBoard] = useState(false)
-  const [addImgBox, setAddImgBox] = useState(false)
+  const [boxes, setBoxes] = useState([])
+  const [addBox, setAddBox] = useState(false)
   //add search by title or date
 
   const storedToken = localStorage.getItem('authToken')
 
-  const getVisionBoards = () => {
+  const getVisionBoardsAndImgBoxes = () => {
     axios
-      .get('/api/visions/user-visions', {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        console.log(response)
-        setBoards(response.data)
-      })
+      .all([
+        axios.get('/api/visions/user-visions', {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }),
+        axios.get('/api/imgboxes/user-imgboxes', {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }),
+      ])
+      .then(
+        axios.spread((obj1, obj2) => {
+          setBoards(obj1.data)
+          setBoxes(obj2.data)
+        })
+      )
       .catch((err) => console.log(err))
   }
 
   useEffect(() => {
-    getVisionBoards()
+    getVisionBoardsAndImgBoxes()
   }, [])
 
-  const addNewBoard = (board) => {
-    setBoards(board)
-  }
-
-  const handleShowVisionBoardForm = () => {
-    setAddBoard(!addBoard)
-  }
-
   const handleShowImgBoxForm = () => {
-    setAddImgBox(!addImgBox)
+    setAddBox(!addBox)
   }
 
   return (
     <div>
-      <VisionsHeader
-        handleShowVisionBoardForm={handleShowVisionBoardForm}
-        handleShowImgBoxForm={handleShowImgBoxForm}
-      />
+      <VisionsHeader handleShowImgBoxForm={handleShowImgBoxForm} />
       <main>
-        {boards.map((board) => (
-          <VisionBoard key={board._id} title={board.title} />
-        ))}
-        {addBoard && (
-          <AddBoard
-            addNewBoard={addNewBoard}
-            refreshVisions={getVisionBoards}
-            addBoard={addBoard}
-            setAddBoard={setAddBoard}
+        <div className='board-grid'>
+          {boards.map((board) => (
+            <Container key={board._id}>
+              <VisionBoard boxes={boxes} />
+            </Container>
+          ))}
+        </div>
+        {addBox && (
+          <AddImgBox
+            addBox={addBox}
+            setAddBox={setAddBox}
+            boxes={boxes}
+            refreshBoardAndBoxes={getVisionBoardsAndImgBoxes}
           />
         )}
       </main>

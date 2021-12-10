@@ -1,4 +1,5 @@
 import React from 'react'
+import { Row, Col } from 'react-bootstrap'
 
 import ImgBox from './ImgBox'
 
@@ -6,13 +7,13 @@ const VisionBoard = ({ title, boxes }) => {
   // add delete
   return (
     <div class='vision-board'>
-      <div class='img-box-area'>
+      <Row class='img-box-area'>
         {boxes.map((box) => (
-          <div key={box._id} imgPath={box.imgPath} text={box.text}>
-            <ImgBox />
-          </div>
+          <Col key={box._id}>
+            <ImgBox box={box} />
+          </Col>
         ))}
-      </div>
+      </Row>
       <p>{title}</p>
     </div>
   )
