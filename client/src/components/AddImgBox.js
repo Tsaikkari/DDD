@@ -58,7 +58,7 @@ const AddImgBox = ({
   return (
     <FormContainer>
       <Form onSubmit={handleSubmit} enctype='multipart/form-data'>
-        <Form.Group controlId='title' className='mb-3'>
+        <Form.Group controlId='image' className='mb-3'>
           <Form.Label>Choose Image</Form.Label>
           <Form.Control
             accept='image/*'
