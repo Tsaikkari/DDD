@@ -8,6 +8,7 @@ const imageBoxSchema = new Schema(
     },
     text: String,
     visionBoard: { type: Schema.Types.ObjectId, ref: 'VisionBoard' },
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
   },
   {
     timestamps: true,

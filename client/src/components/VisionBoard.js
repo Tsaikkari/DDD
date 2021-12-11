@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Row, Col, Form, Button } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
 import axios from 'axios'
 
 import ImgBox from './ImgBox'
@@ -11,28 +11,9 @@ const VisionBoard = (props) => {
   const { user } = useContext(AuthContext)
   const storedToken = localStorage.getItem('authToken')
 
-  const handleBoard = async (e) => {
-    e.preventDefault()
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${storedToken}`,
-        },
-      }
-
-      const newBoard = { title: 'Vision Board', user }
-
-      await axios.post('/api/visions', newBoard, config)
-      props.refreshVisionBoards()
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
   return (
     <div className='vision-board'>
-      <Form onSubmit={handleBoard}>
+      <div>
         {props.boxes.length === 0 && (
           <div className='vision-board-instructions'>
             <h1>Create Vision Boards</h1>
@@ -47,13 +28,7 @@ const VisionBoard = (props) => {
           ))}
         </Row>
         <p>{props.title}</p>
-        {props.boxes.length > 0 && (
-          <div>
-            <p>Vision Board is finished?</p>
-            <Button onClick={handleBoard}>Save Vision Board</Button>
-          </div>
-        )}
-      </Form>
+      </div>
     </div>
   )
 }

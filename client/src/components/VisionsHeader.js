@@ -7,7 +7,7 @@ const VisionsHeader = ({ handleShowImgBoxForm }) => {
   return (
     <header>
       <Button className='add-imgbox-btn' onClick={handleShowImgBoxForm}>
-        Add Image
+        Create Vision Board
       </Button>
       <FilterBoard />
     </header>

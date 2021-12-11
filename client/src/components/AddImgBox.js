@@ -5,16 +5,26 @@ import axios from 'axios'
 import { AuthContext } from '../context/auth'
 import FormContainer from './FormContainer'
 
-const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes }) => {
+const AddImgBox = ({
+  addBox,
+  setAddBox,
+  refreshImgBoxes,
+  refreshVisionBoards,
+}) => {
   const [imgPath, setImgPath] = useState('')
   const [text, setText] = useState('')
 
   const { user } = useContext(AuthContext)
   const storedToken = localStorage.getItem('authToken')
 
+  const onImage = (e) => {
+    setImgPath(e.target.value)
+
+    console.log('IMG PATHHHHHHHHHHHHH', e.target.value)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('click')
     try {
       const config = {
         headers: {
@@ -23,11 +33,21 @@ const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes }) => {
         },
       }
 
+      const newBoard = { title: 'Vision Board', user }
       const newImgBox = { imgPath, text, user }
 
-      await axios.post('/api/imgboxes', newImgBox, config)
+      await axios.all([
+        await axios.post('/api/visions', newBoard, config),
+        await axios.post('/api/imgbox', newImgBox, config),
+      ])
+      const response = axios.spread((obj1, obj2) => {
+        return obj1.data, obj2.data
+      })
+      console.log(response)
+
       setImgPath('')
       setText('')
+      refreshVisionBoards()
       refreshImgBoxes()
       setAddBox(!addBox)
     } catch (err) {
@@ -37,7 +57,7 @@ const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes }) => {
 
   return (
     <FormContainer>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} enctype='multipart/form-data'>
         <Form.Group controlId='title' className='mb-3'>
           <Form.Label>Choose Image</Form.Label>
           <Form.Control
@@ -46,10 +66,10 @@ const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes }) => {
             value={imgPath}
             id='image'
             name='image'
-            onChange={(e) => setImgPath(e.currentTarget)}
+            //onChange={(e) => setImgPath(e.target.value)}
+            onChange={onImage}
           />
           <Image
-            style={{ position: 'absolute', top: '-110px' }}
             id='previwImage'
             src='#'
             alt='visionboard-img'
@@ -60,6 +80,7 @@ const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes }) => {
         <Form.Group controlId='text' className='mb-3'>
           <Form.Control
             type='textarea'
+            rows='5'
             placeholder='Add text'
             value={text}
             onChange={(e) => setText(e.target.value)}

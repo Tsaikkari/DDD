@@ -32,7 +32,7 @@ const Visions = () => {
 
   const getImgBoxes = () => {
     axios
-      .get('/api/imgboxes/user-imgboxes', {
+      .get('/api/imgbox', {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -58,6 +58,7 @@ const Visions = () => {
           <AddImgBox
             addBox={addBox}
             setAddBox={setAddBox}
+            refreshVisionBoards={getVisionBoards}
             refreshImgBoxes={getImgBoxes}
           />
         )}
@@ -65,19 +66,11 @@ const Visions = () => {
           {boards.length > 0 ? (
             boards.map((board) => (
               <Container key={board._id} className='vision-board-container'>
-                <VisionBoard
-                  boxes={boxes}
-                  setBoxes={setBoxes}
-                  refreshVisionBoards={getVisionBoards}
-                />
+                <VisionBoard boxes={boxes} setBoxes={setBoxes} />
               </Container>
             ))
           ) : (
-            <VisionBoard
-              boxes={boxes}
-              setBoxes={setBoxes}
-              refreshVisionBoards={getVisionBoards}
-            />
+            <VisionBoard boxes={boxes} setBoxes={setBoxes} />
           )}
         </div>
       </main>

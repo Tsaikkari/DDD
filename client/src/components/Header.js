@@ -24,12 +24,12 @@ const Header = () => {
                   <i className='fas fa-shopping-cart'></i> My Videos
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/visions'>
+              <LinkContainer to='/visionboards'>
                 <Nav.Link>
                   <i className='fas fa-shopping-cart'></i> My Vision Boards
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/visions'>
+              <LinkContainer to='/visionboards'>
                 <Nav.Link>
                   <i className='fas fa-shopping-cart'></i> My Notes
                 </Nav.Link>

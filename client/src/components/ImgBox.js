@@ -4,7 +4,7 @@ import { Card, Image } from 'react-bootstrap'
 
 const ImgBox = ({ box, boxes, setBoxes }) => {
   return (
-    <Draggable grid={[100, 100]}>
+    <Draggable grid={[400, 400]}>
       <Card className='img-card' key={box._id}>
         <div className='box-imgs'>
           <Image

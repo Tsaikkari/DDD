@@ -23,6 +23,7 @@ router.get('/profile', isAuthenticated, async (req, res, next) => {
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
+        visionBoards: user.visionBoards,
       })
     }
   } catch (error) {
