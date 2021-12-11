@@ -1,11 +1,15 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 
-const VisionsHeader = ({ handleShowVisionBoardForm, handleShowImgBoxForm }) => {
+import FilterBoard from './FilterBoard'
+
+const VisionsHeader = ({ handleShowImgBoxForm }) => {
   return (
     <header>
-      {/* <Button onClick={handleShowVisionBoardForm}>New vision board</Button> */}
-      <Button onClick={handleShowImgBoxForm}>Add an image</Button>
+      <Button className='add-imgbox-btn' onClick={handleShowImgBoxForm}>
+        Add Image
+      </Button>
+      <FilterBoard />
     </header>
   )
 }

@@ -54,16 +54,6 @@ const Visions = () => {
     <div>
       <VisionsHeader handleShowImgBoxForm={handleShowImgBoxForm} />
       <main>
-        <div className='board-grid'>
-          {boards.map((board) => (
-            <Container key={board._id}>
-              <VisionBoard
-                boxes={boxes}
-                refreshVisionBoards={getVisionBoards}
-              />
-            </Container>
-          ))}
-        </div>
         {addBox && (
           <AddImgBox
             addBox={addBox}
@@ -71,6 +61,25 @@ const Visions = () => {
             refreshImgBoxes={getImgBoxes}
           />
         )}
+        <div className='boards'>
+          {boards.length > 0 ? (
+            boards.map((board) => (
+              <Container key={board._id} className='vision-board-container'>
+                <VisionBoard
+                  boxes={boxes}
+                  setBoxes={setBoxes}
+                  refreshVisionBoards={getVisionBoards}
+                />
+              </Container>
+            ))
+          ) : (
+            <VisionBoard
+              boxes={boxes}
+              setBoxes={setBoxes}
+              refreshVisionBoards={getVisionBoards}
+            />
+          )}
+        </div>
       </main>
     </div>
   )

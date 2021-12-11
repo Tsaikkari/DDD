@@ -85,7 +85,7 @@ body {
     #bfa4bd 50%,
     rgb(65, 51, 77) 100%
   ) !important;
-  border-radius: 0px;
+  border-radius: 3px;
   height: 5.3rem;
   display: flex;
   align-items: center;
@@ -122,6 +122,61 @@ body {
 .search-input {
   margin: 2.3rem 0;
   max-width: 100%;
+}
+
+/*vision board*/
+header {
+  height: 4rem;
+  background-color: #eee;
+}
+
+.add-imgbox-btn,
+.save-img-btn {
+  background: #000;
+  color: pink;
+}
+
+.add-imgbox-btn {
+  margin-top: 1rem;
+}
+
+.save-img-btn {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.boards {
+  background: red;
+}
+
+.img-box-area {
+  background-color: blue;
+}
+
+.img-card {
+  border: 1px solid black;
+  background-color: white;
+}
+
+.img-card p {
+  font-size: 10px;
+}
+
+.box-imgs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vision-board {
+  background: orange;
+  height: 80vh;
+  margin: 0 5rem;
+}
+
+.vision-board-instructions {
+  padding-top: 1rem;
 }
 
 /*footer*/
