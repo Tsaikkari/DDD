@@ -21,17 +21,17 @@ const Header = () => {
             <>
               <LinkContainer to='/videos'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> My Videos
+                  <i class='fab fa-youtube'></i> My Videos
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to='/visionboards'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> My Vision Boards
+                  <i class='fab fa-wpexplorer'></i> My Vision Boards
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to='/visionboards'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> My Notes
+                  <i class='fas fa-clipboard'></i> My Notes
                 </Nav.Link>
               </LinkContainer>
               <NavDropdown title={user.name} id='username'>

@@ -124,13 +124,13 @@ body {
   max-width: 100%;
 }
 
-/*vision board*/
-header {
-  height: 4rem;
-  background-color: #eee;
+/*vision board - sidebar*/
+.upper-sidebar-row {
+  height: 30vh;
 }
 
 .add-imgbox-btn,
+.add-vision-board-btn,
 .save-img-btn {
   background: #000;
   color: pink;
@@ -145,12 +145,22 @@ header {
   width: 100%;
 }
 
-.boards {
-  background: red;
+/*vision board*/
+.vision-board {
+  background: orange;
+  height: 100vh;
+}
+
+.vision-board-instructions {
+  padding-top: 1rem;
 }
 
 .img-box-area {
   background-color: blue;
+}
+
+.img-box-col {
+  padding: 0;
 }
 
 .img-card {
@@ -159,24 +169,14 @@ header {
 }
 
 .img-card p {
-  font-size: 10px;
+  font-size: 20px;
 }
 
-.box-imgs {
+.text-trash {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  /* flex-direction: row;
+  align-items: center;*/
   justify-content: space-between;
-}
-
-.vision-board {
-  background: orange;
-  height: 80vh;
-  margin: 0 5rem;
-}
-
-.vision-board-instructions {
-  padding-top: 1rem;
 }
 
 /*footer*/

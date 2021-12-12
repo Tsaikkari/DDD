@@ -3,29 +3,29 @@ import Draggable from 'react-draggable'
 import { Card, Image } from 'react-bootstrap'
 
 const ImgBox = ({ box, boxes, setBoxes }) => {
+  const deleteImgBox = (id) => {
+    setBoxes(boxes.filter((item) => item.id !== id))
+  }
   return (
-    <Draggable grid={[400, 400]}>
+    <Draggable>
       <Card className='img-card' key={box._id}>
-        <div className='box-imgs'>
-          <Image
-            src={box.imgPath}
-            style={{ height: '400px', width: '400px' }}
-            alt='vision-board-img'
-          ></Image>
+        <Image
+          className='img'
+          src={box.imgPath}
+          // style={{ height: '380px', width: '446px' }}
+          alt='vision-board-img'
+          fluid
+        ></Image>
+        <div className='text-trash'>
+          <p>{box.text}</p>
           <p
             onClick={() => {
-              const boxList = boxes.filter((item) => {
-                if (item._id !== box._id) {
-                  return item
-                }
-              })
-              setBoxes(boxList)
+              deleteImgBox(box._id)
             }}
           >
-            <i class='fas fa-trash'></i>
+            <i className='fas fa-trash'></i>
           </p>
         </div>
-        <p>{box.text}</p>
       </Card>
     </Draggable>
   )
