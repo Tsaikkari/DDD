@@ -1,11 +1,20 @@
 import React from 'react'
 import Draggable from 'react-draggable'
 import { Card, Image } from 'react-bootstrap'
+import axios from 'axios'
 
-const ImgBox = ({ text, imgPath, boxes, setBoxes, id }) => {
-  const deleteImgBox = (id) => {
-    setBoxes(boxes.filter((item) => item.id !== id))
+const ImgBox = ({ text, imgPath, id, refreshImgBoxes }) => {
+  const deleteImage = async () => {
+    if (window.confirm('Delete image?')) {
+      try {
+        await axios.delete(`/api/images/${id}`)
+        //refreshImgBoxes()
+      } catch (err) {
+        console.log(err)
+      }
+    }
   }
+
   return (
     <Draggable>
       <Card className='img-card'>
@@ -20,10 +29,11 @@ const ImgBox = ({ text, imgPath, boxes, setBoxes, id }) => {
           <p>{text}</p>
           <p
             onClick={() => {
-              deleteImgBox(id)
+              deleteImage(id)
             }}
           >
-            <i className='fas fa-trash'></i>
+            {' '}
+            *{/* <i className='fas fa-trash'></i> */}
           </p>
         </div>
       </Card>

@@ -1,13 +1,13 @@
 import React from 'react'
 import Draggable from 'react-draggable'
-import { Card } from 'react-bootstrap'
 
 const Video = ({ title, url }) => {
   return (
     <Draggable>
-      <Card className='img-card'>
+      <div>
         <iframe title={title} width='477' height='315' src={url}></iframe>
-      </Card>
+        <p className='video-title'>{title}</p>
+      </div>
     </Draggable>
   )
 }

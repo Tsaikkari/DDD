@@ -48,7 +48,7 @@ const AddImgBox = ({
 
   return (
     <FormContainer>
-      <Form onSubmit={handleSubmit} enctype='multipart/form-data'>
+      <Form onSubmit={handleSubmit} encType='multipart/form-data'>
         <Form.Group controlId='image' className='mb-3'>
           <Form.Label>Choose Image</Form.Label>
           <Form.Control
@@ -77,7 +77,7 @@ const AddImgBox = ({
             onChange={(e) => setText(e.target.value)}
           />
         </Form.Group>
-        <Button className='save-img-btn' type='submit'>
+        <Button className='save-btn' type='submit'>
           Add This Image to the Vision Board
         </Button>
       </Form>

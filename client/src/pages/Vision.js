@@ -34,7 +34,7 @@ const Vision = () => {
 
   // const getImgBoxes = () => {
   //   axios
-  //     .get('/api/images/user-imgboxes', {
+  //     .get('/api/images/user-images', {
   //       headers: { Authorization: `Bearer ${storedToken}` },
   //     })
   //     .then((response) => {
@@ -63,6 +63,9 @@ const Vision = () => {
         />
       )}
       <Row>
+        {boxes.length === 0 && (
+          <h1 className='vision-board-instructions'>Instructions</h1>
+        )}
         {boxes &&
           boxes.map((box) => (
             <Col key={box._id}>
@@ -70,8 +73,7 @@ const Vision = () => {
                 id={box._id}
                 text={box.text}
                 imgPath={box.imgPath}
-                boxes={boxes}
-                setBoxes={setBoxes}
+                //refreshImgBoxes={getImgBoxes}
               />
             </Col>
           ))}

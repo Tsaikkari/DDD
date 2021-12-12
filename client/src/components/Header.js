@@ -26,7 +26,7 @@ const Header = () => {
               </LinkContainer>
               <LinkContainer to='/vision'>
                 <Nav.Link>
-                  <i className='fab fa-wpexplorer'></i> My Vision Boards
+                  <i className='fab fa-wpexplorer'></i> My Vision Board
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to='/vision'>

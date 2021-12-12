@@ -69,7 +69,7 @@ const Profile = () => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Link to='/visions' className='link'>
-                    Create your vision boards
+                    Create your vision board
                   </Link>
                 </ListGroup.Item>
                 <ListGroup.Item>
