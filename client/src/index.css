@@ -139,6 +139,19 @@ body {
   top: -0.3rem;
 }
 
+.finished-board-btn {
+  background: #000;
+  color: pink;
+  border: 2px solid #000;
+  margin-top: 1rem;
+  padding: 4px 7px;
+  border-radius: 4px;
+  position: absolute;
+  text-decoration: none;
+  right: 1.5rem;
+  top: -0.3rem;
+}
+
 .vision-board-container,
 .vision-board-imgs-container {
   margin: 0.5rem 1.5rem;
