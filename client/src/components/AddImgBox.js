@@ -60,7 +60,7 @@ const AddImgBox = ({
             value={imgPath}
             id='image'
             name='image'
-            //TODO: find out how to do this with reach
+            //TODO: find out how to do this with react
             //onChange={(e) => setImgPath(e.target.value)}
             onChange={onImage}
           />

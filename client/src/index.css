@@ -139,7 +139,8 @@ body {
   top: -0.3rem;
 }
 
-.vision-board-container {
+.vision-board-container,
+.vision-board-imgs-container {
   margin: 0.5rem 1.5rem;
 }
 
@@ -167,7 +168,14 @@ body {
 }
 
 .img-card p {
+  color: #543552;
   font-size: 20px;
+  margin: 0.2rem 0.7rem;
+}
+
+.text-trash {
+  display: flex;
+  justify-content: space-between;
 }
 
 .vision-board {
