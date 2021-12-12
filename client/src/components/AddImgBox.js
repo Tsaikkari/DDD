@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { useParams } from 'react-router-dom'
 import { Form, Image, Button } from 'react-bootstrap'
 import axios from 'axios'
 
@@ -17,6 +18,8 @@ const AddImgBox = ({
   const { user } = useContext(AuthContext)
   const storedToken = localStorage.getItem('authToken')
 
+  const { id } = useParams()
+
   const onImage = (e) => {
     setImgPath(e.target.value)
 
@@ -33,18 +36,9 @@ const AddImgBox = ({
         },
       }
 
-      const newBoard = { title: 'Vision Board', user }
-      const newImgBox = { imgPath, text, user }
+      const newImgBox = { imgPath, text, user, id }
 
-      await axios.all([
-        await axios.post('/api/visions', newBoard, config),
-        await axios.post('/api/imgbox', newImgBox, config),
-      ])
-      const response = axios.spread((obj1, obj2) => {
-        return obj1.data, obj2.data
-      })
-      console.log(response)
-
+      await axios.post('/api/imgboxes', newImgBox, config)
       setImgPath('')
       setText('')
       refreshVisionBoards()
@@ -66,6 +60,7 @@ const AddImgBox = ({
             value={imgPath}
             id='image'
             name='image'
+            //TODO: find out how to do this with reach
             //onChange={(e) => setImgPath(e.target.value)}
             onChange={onImage}
           />

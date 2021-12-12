@@ -19,14 +19,14 @@ router.get('/', isAuthenticated, async (req, res, next) => {
 // TODO
 // add image box to vision board
 router.post(
-  '/imgbox',
+  '/',
   uploader.single('image'),
   isAuthenticated,
   async (req, res, next) => {
     try {
-      const { text, user } = req.body
+      const { text, user, id } = req.body
       const imgPath = req.file.path
-      if (!imgPath || !user) {
+      if (!imgPath || !user || !id) {
         res.status(400)
         return
       }
@@ -37,13 +37,11 @@ router.post(
         imgPath: imgPath,
         text,
         user: userInfo._id,
+        visionBoard: id,
       })
 
-      const visionBoards = await VisionBoard.find({ user: userInfo._id })
-      const currentVisionBoard = visionBoards[visionBoards.length - 1]
-
       const updatedBoard = await VisionBoard.findByIdAndUpdate(
-        currentVisionBoard._id,
+        image.visionBoard,
         {
           $push: { images: image._id },
         }

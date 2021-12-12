@@ -118,16 +118,29 @@ body {
   margin: 0 0 0 0.4rem;
 }
 
+.video-title {
+  margin-top: 0.7rem;
+}
+
 /*search-box*/
 .search-input {
   margin: 2.3rem 0;
   max-width: 100%;
 }
 
-/*vision board*/
-header {
-  height: 4rem;
-  background-color: #eee;
+/*vision header*/
+.add-board-btn,
+.add-image-btn {
+  background: #fff;
+  color: #000;
+  margin-top: 1rem;
+  position: absolute;
+  left: 1.5rem;
+  top: -0.3rem;
+}
+
+.vision-board-container {
+  margin: 0.5rem 1.5rem;
 }
 
 .add-imgbox-btn,
@@ -153,26 +166,14 @@ header {
   background-color: blue;
 }
 
-.img-card {
-  border: 1px solid black;
-  background-color: white;
-}
-
 .img-card p {
-  font-size: 10px;
-}
-
-.box-imgs {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  font-size: 20px;
 }
 
 .vision-board {
   background: orange;
-  height: 80vh;
-  margin: 0 5rem;
+  height: 94vh;
+  margin: 0 1.5rem;
 }
 
 .vision-board-instructions {

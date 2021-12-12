@@ -3,11 +3,11 @@ import { Button } from 'react-bootstrap'
 
 import FilterBoard from './FilterBoard'
 
-const VisionsHeader = ({ handleShowImgBoxForm }) => {
+const VisionsHeader = ({ handleShowVisionBoardForm }) => {
   return (
     <header>
-      <Button className='add-imgbox-btn' onClick={handleShowImgBoxForm}>
-        Create Vision Board
+      <Button className='add-board-btn' onClick={handleShowVisionBoardForm}>
+        Add Board
       </Button>
       <FilterBoard />
     </header>

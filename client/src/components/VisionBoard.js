@@ -1,33 +1,30 @@
-import React, { useContext } from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
-import axios from 'axios'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Row, Col } from 'react-bootstrap'
 
 import ImgBox from './ImgBox'
-import { AuthContext } from '../context/auth'
 
-const VisionBoard = (props) => {
+const VisionBoard = ({ addBox, setAddBox, refreshImgBoxes, boxes }) => {
   // add delete
 
-  const { user } = useContext(AuthContext)
-  const storedToken = localStorage.getItem('authToken')
+  let navigate = useNavigate()
 
   return (
     <div className='vision-board'>
       <div>
-        {props.boxes.length === 0 && (
+        {boxes.length === 0 && (
           <div className='vision-board-instructions'>
-            <h1>Create Vision Boards</h1>
             <p>Instructions here</p>
           </div>
         )}
         <Row className='img-box-area'>
-          {props.boxes.map((box) => (
-            <Col key={box._id}>
-              <ImgBox box={box} boxes={props.boxes} setBoxes={props.setBoxes} />
-            </Col>
-          ))}
+          <Col>
+            {boxes.map((box) => (
+              <ImgBox key={box._id} box={box} />
+            ))}
+          </Col>
         </Row>
-        <p>{props.title}</p>
+        {/* <p>{title}</p> */}
       </div>
     </div>
   )
