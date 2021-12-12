@@ -5,7 +5,7 @@ const { isAuthenticated } = require('./../middleware/jwt.js')
 // get users /api/users
 router.get('/', isAuthenticated, async (req, res, next) => {
   try {
-    const users = await User.find()
+    const users = await User.find().populate('visionboard', 'id images title')
     res.status(200).json(users)
   } catch (error) {
     next(new Error(error.message))
@@ -15,16 +15,19 @@ router.get('/', isAuthenticated, async (req, res, next) => {
 // get user profile /api/users/profile
 router.get('/profile', isAuthenticated, async (req, res, next) => {
   try {
-    const user = await User.findById(req.payload._id).select('-password')
+    const user = await User.findById(req.payload._id)
+      .populate('visionboard', 'id images title')
+      .select('-password')
 
     if (user) {
-      res.status(200).json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin,
-        visionBoards: user.visionBoards,
-      })
+      res.status(200).json(user)
+      // res.status(200).json({
+      //   _id: user._id,
+      //   name: user.name,
+      //   email: user.email,
+      //   isAdmin: user.isAdmin,
+      //   visionBoard: user.visionBoard,
+      // })
     }
   } catch (error) {
     next(new Error(error.message))

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import axios from 'axios'
 
-import ImgBoxArea from './ImgBoxArea'
+import ImgBox from './ImgBox'
 import { AuthContext } from '../context/auth'
 
 const VisionBoard = (props) => {
@@ -20,7 +20,14 @@ const VisionBoard = (props) => {
       )} */}
 
       <p>{props.board && props.board.title}</p>
-      <ImgBoxArea boxes={props.boxes} />
+      <Row className='img-box-area'>
+        {props.boxes &&
+          props.boxes.map((box) => (
+            <Col className='img-box-col' key={box._id}>
+              <ImgBox box={box} boxes={props.boxes} setBoxes={props.setBoxes} />
+            </Col>
+          ))}
+      </Row>
     </div>
   )
 }

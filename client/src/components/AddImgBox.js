@@ -33,18 +33,9 @@ const AddImgBox = ({
         },
       }
 
-      const newBoard = { title: 'Vision Board', user }
       const newImgBox = { imgPath, text, user }
 
-      await axios.all([
-        await axios.post('/api/visions', newBoard, config),
-        await axios.post('/api/imgbox', newImgBox, config),
-      ])
-      const response = axios.spread((obj1, obj2) => {
-        return obj1.data, obj2.data
-      })
-      console.log(response)
-
+      await axios.post('/api/imgbox', newImgBox, config)
       setImgPath('')
       setText('')
       refreshVisionBoards()

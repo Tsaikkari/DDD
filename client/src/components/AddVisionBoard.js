@@ -24,9 +24,9 @@ const AddVisionBoard = (props) => {
 
       const newBoard = { title, user }
 
-      await axios.post('/api/visions', newBoard, config)
+      await axios.post('/api/vision', newBoard, config)
       setTitle('')
-      props.refreshVisionBoards()
+      props.getVisionBoard()
     } catch (err) {
       console.log(err)
     }

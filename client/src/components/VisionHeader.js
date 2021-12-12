@@ -1,14 +1,14 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 
-const BottomSideBar = ({ handleShowImgBoxForm }) => {
+const VisionHeader = ({ handleShowImgBoxForm }) => {
   return (
-    <div>
+    <header>
       <Button className='add-vision-board-btn' onClick={handleShowImgBoxForm}>
         Add Images
       </Button>
-    </div>
+    </header>
   )
 }
 
-export default BottomSideBar
+export default VisionHeader

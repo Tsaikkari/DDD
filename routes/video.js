@@ -46,7 +46,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-// get a video /api/video/:id
+// get a video /api/videos/:id
 router.get('/:id', async (req, res, next) => {
   try {
     const video = await Video.findById(req.params.id).populate(

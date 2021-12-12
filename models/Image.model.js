@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const imageBoxSchema = new Schema(
+const imageSchema = new Schema(
   {
     imgPath: {
       type: String,
@@ -15,6 +15,6 @@ const imageBoxSchema = new Schema(
   }
 )
 
-const ImageBox = model('ImageBox', imageBoxSchema)
+const Image = model('Image', imageSchema)
 
-module.exports = ImageBox
+module.exports = Image

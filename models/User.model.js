@@ -20,7 +20,6 @@ const userSchema = new Schema(
       required: true,
       default: false,
     },
-    visionBoard: { type: Schema.Types.ObjectId, ref: 'VisionBoard' },
   },
   {
     timestamps: true,
