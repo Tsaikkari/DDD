@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 
@@ -43,7 +43,6 @@ const AddVisionBoard = ({
   }
   return (
     <>
-      {/* {boards.images.length === 0 ? ( */}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='title' className='mb-3'>
           <Form.Control
@@ -53,21 +52,8 @@ const AddVisionBoard = ({
             onChange={(e) => setTitle(e.target.value)}
           />
         </Form.Group>
-        <Button type='submit'>Add Vision Board</Button>
+        <Button type='submit'>Save</Button>
       </Form>
-      {/* ) : (
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId='title' className='mb-3'>
-            <Form.Control
-              type='text'
-              placeholder='Give Title'
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </Form.Group>
-          <Button type='submit'>Save</Button>
-        </Form>
-      )} */}
     </>
   )
 }

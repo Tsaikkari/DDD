@@ -25,6 +25,7 @@ const AddImgBox = ({
     setImage(e.target.files[0])
   }
 
+  // TODO: fix
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData()
@@ -62,21 +63,10 @@ const AddImgBox = ({
           <Form.Control
             accept='image/*'
             type='file'
-            // value={image}
             id='image'
             name='image'
             onChange={onChange}
           />
-          {/* <div className='file-path-wrapper'>
-            <Form.Control className='file-path validate' type='text' />
-          </div> */}
-          {/* <Image
-            id='previwImage'
-            src='#'
-            alt='visionboard-img'
-            width='400px'
-            height='400px'
-          /> */}
         </Form.Group>
         <Form.Group controlId='text' className='mb-3'>
           <Form.Control

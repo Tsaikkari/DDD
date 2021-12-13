@@ -45,16 +45,11 @@ const Visions = () => {
         )}
 
         <div className='boards'>
-          {/* TODO: visionboard component */}
-          {/* {boards.length > 0 ? (
-            boards.map((board) => (
-              <div key={board._id} className='vision-board-container'>
-                <VisionBoard board={board} />
-              </div>
-            ))
-          ) : (
-            <div></div>
-          )} */}
+          {boards.map((board) => (
+            <div key={board._id} className='vision-board-container'>
+              <VisionBoard images={board.images} title={board.title} />
+            </div>
+          ))}
         </div>
       </main>
     </div>

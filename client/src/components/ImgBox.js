@@ -21,7 +21,6 @@ const ImgBox = ({ text, imgPath, id, refreshImgBoxes }) => {
         <Image
           className='img'
           src={imgPath}
-          // style={{ height: '380px', width: '446px' }}
           alt='vision-board-img'
           fluid
         ></Image>
@@ -33,7 +32,7 @@ const ImgBox = ({ text, imgPath, id, refreshImgBoxes }) => {
             }}
           >
             {' '}
-            *{/* <i className='fas fa-trash'></i> */}
+            *
           </p>
         </div>
       </Card>

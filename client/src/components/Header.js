@@ -9,7 +9,6 @@ const Header = () => {
 
   return (
     <Navbar bg='light' expand='lg' collapseOnSelect className='navbar'>
-      {/* <Container> */}
       <LinkContainer to='/'>
         <Navbar.Brand>DDD</Navbar.Brand>
       </LinkContainer>
@@ -57,7 +56,6 @@ const Header = () => {
           )}
         </Nav>
       </Navbar.Collapse>
-      {/* </Container> */}
     </Navbar>
   )
 }
