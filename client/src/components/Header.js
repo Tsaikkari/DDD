@@ -45,7 +45,7 @@ const Header = () => {
             <div className='nav-not-signedin'>
               <LinkContainer to='/signup'>
                 <Nav.Link>
-                  <i className='fas fa-birthday-cake'></i> Sign Up
+                  <i className='fas fa-user-plus'></i> Sign Up
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to='/login'>

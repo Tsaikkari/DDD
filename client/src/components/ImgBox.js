@@ -8,7 +8,7 @@ const ImgBox = ({ text, imgPath, id, refreshImgBoxes }) => {
     if (window.confirm('Delete image?')) {
       try {
         await axios.delete(`/api/images/${id}`)
-        //refreshImgBoxes()
+        refreshImgBoxes()
       } catch (err) {
         console.log(err)
       }

@@ -16,16 +16,24 @@ router.get('/', isAuthenticated, async (req, res, next) => {
   }
 })
 
-// TODO
+router.post('/upload', uploader.single('image'), (req, res, next) => {
+  try {
+    res.json({ secure_url: req.file.path })
+  } catch (err) {
+    next(new Error(err))
+  }
+})
+
+// TODO: fix this works really sporadically
 // add image box to vision board
 router.post(
   '/',
-  uploader.single('image'),
+  //uploader.single('image'),
   isAuthenticated,
   async (req, res, next) => {
     try {
-      const { text, user, id } = req.body
-      const imgPath = req.file.path
+      const { text, user, id, imgPath } = req.body
+      //const imgPath = req.file.path
       if (!imgPath || !user || !id) {
         res.status(400)
         return
@@ -53,5 +61,6 @@ router.post(
     }
   }
 )
+// TODO: delete img
 
 module.exports = router

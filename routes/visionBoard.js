@@ -34,6 +34,7 @@ router.post('/', isAuthenticated, async (req, res, next) => {
       images: [],
     })
 
+    console.log('POST NEW VISION BOARD', visionBoard)
     res.status(201).json(visionBoard)
   } catch (err) {
     next(new Error(err.message))
@@ -43,11 +44,11 @@ router.post('/', isAuthenticated, async (req, res, next) => {
 // get vision boards of logged in user /api/visions/user
 router.get('/user-visions', isAuthenticated, async (req, res, next) => {
   try {
-    console.log(res.data, 'RES DATA BOARDS')
     const visionBoards = await VisionBoard.find({ user: req.payload }).populate(
       'images',
       'id imgPath text'
     )
+    console.log(res.data, 'RES DATA GET VISION BOARDS')
     res.status(200).json(visionBoards)
   } catch (err) {
     next(new Error(err.message))

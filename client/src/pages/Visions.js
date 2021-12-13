@@ -45,6 +45,7 @@ const Visions = () => {
         )}
 
         <div className='boards'>
+          {/* TODO: visionboard component */}
           {/* {boards.length > 0 ? (
             boards.map((board) => (
               <div key={board._id} className='vision-board-container'>
