@@ -11,7 +11,7 @@ const VisionBoard = ({ title, images }) => {
       <Row>
         {images.map((image) => (
           <Col key={image._id} sm={12} md={6} lg={4} xl={3}>
-            <ImgBox imgPath={image.imgPath} />
+            <ImgBox imgPath={image.imgPath} text={image.text} />
           </Col>
         ))}
       </Row>

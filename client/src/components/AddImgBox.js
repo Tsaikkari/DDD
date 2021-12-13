@@ -42,6 +42,7 @@ const AddImgBox = ({
       const res = await axios.post('/api/imgboxes/upload', formData)
       const imgPath = res.data.secure_url
       const newImgBox = { imgPath, text, user, id }
+      console.log(newImgBox, 'imgbox')
       await axios.post('/api/imgboxes', newImgBox, config)
       setLoading(!loading)
       setImage(newImgBox.imgPath)
@@ -67,10 +68,10 @@ const AddImgBox = ({
             onChange={onChange}
           />
         </Form.Group>
-        <Form.Group className='mb-3'>
-          {/* TODO: fix */}
+        {/* <Form.Group className='mb-3'>
+         
           <Image src={image} fluid></Image>
-        </Form.Group>
+        </Form.Group> */}
         <Form.Group controlId='text' className='mb-3'>
           <Form.Control
             type='textarea'

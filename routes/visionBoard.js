@@ -34,7 +34,6 @@ router.post('/', isAuthenticated, async (req, res, next) => {
       images: [],
     })
 
-    console.log('POST NEW VISION BOARD', visionBoard)
     res.status(201).json(visionBoard)
   } catch (err) {
     next(new Error(err.message))
@@ -48,7 +47,7 @@ router.get('/user-visions', isAuthenticated, async (req, res, next) => {
       'images',
       'id imgPath text'
     )
-    console.log(res.data, 'RES DATA GET VISION BOARDS')
+
     res.status(200).json(visionBoards)
   } catch (err) {
     next(new Error(err.message))

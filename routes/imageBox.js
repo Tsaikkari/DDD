@@ -5,7 +5,6 @@ const VisionBoard = require('../models/VisionBoard.model')
 const ImageBox = require('../models/ImageBox.model')
 const User = require('../models/User.model')
 const { isAuthenticated } = require('./../middleware/jwt.js')
-const { default: ImgBox } = require('../client/src/components/ImgBox')
 
 // get image boxes
 router.get('/', isAuthenticated, async (req, res, next) => {

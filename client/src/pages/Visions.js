@@ -1,10 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import VisionsHeader from '../components/VisionsHeader'
 import VisionBoard from '../components/VisionBoard'
 import AddVisionBoard from '../components/AddVisionBoard'
-//import { RefreshContext } from '../context/refresh'
 
 const Visions = () => {
   const [boards, setBoards] = useState([])
@@ -21,7 +20,6 @@ const Visions = () => {
       .then((response) => {
         const sorted = response.data.reverse()
         setBoards(sorted)
-        console.log(sorted, 'visionboardsRESP')
       })
       .catch((err) => console.log(err))
   }
