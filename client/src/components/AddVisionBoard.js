@@ -38,7 +38,7 @@ const AddVisionBoard = ({ addBoard, setAddBoard, refreshVisionBoards }) => {
     }
   }
   return (
-    <>
+    <div className='vision-board-form-container'>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='title' className='mb-3'>
           <Form.Control
@@ -50,7 +50,7 @@ const AddVisionBoard = ({ addBoard, setAddBoard, refreshVisionBoards }) => {
         </Form.Group>
         <Button type='submit'>Save</Button>
       </Form>
-    </>
+    </div>
   )
 }
 

@@ -17,6 +17,7 @@ router.get('/', isAuthenticated, async (req, res, next) => {
   }
 })
 
+// upload image to Cloudinary
 router.post('/upload', uploader.single('image'), (req, res, next) => {
   try {
     res.json({ secure_url: req.file.path })
@@ -65,4 +66,5 @@ router.delete('/:id', isAuthenticated, async (req, res, next) => {
     next(new Error(error.message))
   }
 })
+
 module.exports = router

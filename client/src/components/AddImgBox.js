@@ -6,7 +6,13 @@ import axios from 'axios'
 import { AuthContext } from '../context/auth'
 import FormContainer from './FormContainer'
 
-const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes }) => {
+const AddImgBox = ({
+  addBox,
+  setAddBox,
+  refreshImgBoxes,
+  setMessage,
+  message,
+}) => {
   const [image, setImage] = useState('')
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
@@ -37,10 +43,11 @@ const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes }) => {
       const imgPath = res.data.secure_url
       const newImgBox = { imgPath, text, user, id }
       await axios.post('/api/imgboxes', newImgBox, config)
-      setLoading(false)
+      setLoading(!loading)
       setImage(newImgBox.imgPath)
       setText('')
       refreshImgBoxes()
+      setMessage('Image uploaded!')
       setAddBox(!addBox)
     } catch (err) {
       console.log(err)

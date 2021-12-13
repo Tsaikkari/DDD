@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Image } from 'react-bootstrap'
 import axios from 'axios'
 
 import ImgBoxesHeader from '../components/ImgBoxesHeader'
@@ -10,7 +9,7 @@ const VisionBoardImages = () => {
   const [boxes, setBoxes] = useState([])
   const [addBox, setAddBox] = useState(false)
   const [errorMessage, setErrorMessage] = useState(undefined)
-  const [successMessage, setSuccessMessage] = useState()
+  const [message, setMessage] = useState('')
 
   const handleShowImgBoxForm = () => {
     setAddBox(!addBox)
@@ -26,7 +25,6 @@ const VisionBoardImages = () => {
       .then((response) => {
         console.log(response)
         setBoxes(response.data)
-        console.log('imgboxes on visionboard', response.data)
       })
       .catch((err) => {
         const errorMsg = err.response.data.message
@@ -46,13 +44,13 @@ const VisionBoardImages = () => {
           setAddBox={setAddBox}
           refreshImgBoxes={getImgBoxes}
           boxes={boxes}
+          message={message}
+          setMessage={setMessage}
         />
       )}
-      {errorMessage ? (
-        <Message variant='danger'>{errorMessage}</Message>
-      ) : (
-        <Message variant='success'>Image uploaded!</Message>
-      )}
+      {errorMessage && <Message variant='danger'>{errorMessage}</Message>}
+      <Message>{message}</Message>
+      {/* TODO:  */}
       <h1>Instructions on how to create a vision board. </h1>
     </div>
   )

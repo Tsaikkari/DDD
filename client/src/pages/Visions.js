@@ -46,14 +46,17 @@ const Visions = () => {
             refreshVisionBoards={getVisionBoards}
           />
         )}
-
-        <div className='boards'>
-          {boards.map((board) => (
-            <div key={board._id}>
-              <VisionBoard images={board.images} title={board.title} />
-            </div>
-          ))}
-        </div>
+        {boards.length === 0 ? (
+          <p>Instructions</p>
+        ) : (
+          <div className='boards'>
+            {boards.map((board) => (
+              <div key={board._id}>
+                <VisionBoard images={board.images} title={board.title} />
+              </div>
+            ))}
+          </div>
+        )}
       </main>
     </div>
   )
