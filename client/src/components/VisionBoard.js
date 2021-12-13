@@ -7,11 +7,11 @@ const VisionBoard = ({ title, images }) => {
   // TODO: add delete
   return (
     <div className='vision-board'>
-      <p>{title}</p>
+      <p className='vision-board-title'>{title}</p>
       <Row>
         {images.map((image) => (
           <Col key={image._id} sm={12} md={6} lg={4} xl={3}>
-            <ImgBox image={image} />
+            <ImgBox imgPath={image.imgPath} />
           </Col>
         ))}
       </Row>

@@ -1,17 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Image } from 'react-bootstrap'
 import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
 import FormContainer from './FormContainer'
 
-const AddImgBox = ({
-  addBox,
-  setAddBox,
-  refreshImgBoxes,
-  refreshVisionBoards,
-}) => {
+const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes }) => {
   const [image, setImage] = useState('')
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
@@ -23,14 +18,13 @@ const AddImgBox = ({
 
   const onChange = (e) => {
     setImage(e.target.files[0])
+    console.log('PHOTO', e.target.files[0])
   }
 
-  // TODO: fix
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData()
     formData.append('image', image)
-    console.log(image, 'IMAGE')
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -40,14 +34,12 @@ const AddImgBox = ({
     try {
       setLoading(true)
       const res = await axios.post('/api/imgboxes/upload', formData)
-      console.log('responseFromServer', res)
       const imgPath = res.data.secure_url
       const newImgBox = { imgPath, text, user, id }
       await axios.post('/api/imgboxes', newImgBox, config)
       setLoading(false)
       setImage(newImgBox.imgPath)
       setText('')
-      refreshVisionBoards()
       refreshImgBoxes()
       setAddBox(!addBox)
     } catch (err) {
@@ -67,6 +59,10 @@ const AddImgBox = ({
             name='image'
             onChange={onChange}
           />
+        </Form.Group>
+        <Form.Group className='mb-3'>
+          {/* TODO: fix */}
+          <Image src={image} fluid></Image>
         </Form.Group>
         <Form.Group controlId='text' className='mb-3'>
           <Form.Control

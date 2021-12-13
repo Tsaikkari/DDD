@@ -5,12 +5,7 @@ import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
 
-const AddVisionBoard = ({
-  addBoard,
-  setAddBoard,
-  boards,
-  refreshVisionBoards,
-}) => {
+const AddVisionBoard = ({ addBoard, setAddBoard, refreshVisionBoards }) => {
   const [title, setTitle] = useState('')
 
   let navigate = useNavigate()
@@ -31,6 +26,7 @@ const AddVisionBoard = ({
       const newBoard = { title, user }
       const res = await axios.post('/api/visions', newBoard, config)
 
+      refreshVisionBoards()
       setTitle('')
       setAddBoard(!addBoard)
       refreshVisionBoards()

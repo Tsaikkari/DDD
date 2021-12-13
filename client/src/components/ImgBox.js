@@ -7,7 +7,7 @@ const ImgBox = ({ text, imgPath, id, refreshImgBoxes }) => {
   const deleteImage = async () => {
     if (window.confirm('Delete image?')) {
       try {
-        await axios.delete(`/api/images/${id}`)
+        await axios.delete(`/api/imgboxes/${id}`)
         refreshImgBoxes()
       } catch (err) {
         console.log(err)

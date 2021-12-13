@@ -1,30 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Image } from 'react-bootstrap'
 import axios from 'axios'
 
 import ImgBoxesHeader from '../components/ImgBoxesHeader'
 import AddImgBox from '../components/AddImgBox'
-import ImgBox from '../components/ImgBox'
+import Message from '../components/Message'
 
 const VisionBoardImages = () => {
-  const [boxes, setBoxes] = useState([
-    // {
-    //   _id: 1,
-    //   imgPath: '/images/cat.jpg',
-    //   text: 'get a cat',
-    // },
-    // {
-    //   _id: 2,
-    //   imgPath: '/images/developer-job.jpg',
-    //   text: 'get a job',
-    // },
-    // {
-    //   _id: 3,
-    //   imgPath: '/images/me.jpg',
-    //   text: 'play',
-    // },
-  ])
+  const [boxes, setBoxes] = useState([])
   const [addBox, setAddBox] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(undefined)
+  const [successMessage, setSuccessMessage] = useState()
+
   const handleShowImgBoxForm = () => {
     setAddBox(!addBox)
   }
@@ -39,40 +26,34 @@ const VisionBoardImages = () => {
       .then((response) => {
         console.log(response)
         setBoxes(response.data)
-        console.log('imgboxes on visionboard', boxes)
+        console.log('imgboxes on visionboard', response.data)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        const errorMsg = err.response.data.message
+        setErrorMessage(errorMsg)
+      })
   }
 
   useEffect(() => {
     getImgBoxes()
   }, [])
   return (
-    <div className='vision-board-imgs-container'>
+    <div>
       <ImgBoxesHeader handleShowImgBoxForm={handleShowImgBoxForm} />
       {addBox && (
         <AddImgBox
           addBox={addBox}
           setAddBox={setAddBox}
           refreshImgBoxes={getImgBoxes}
+          boxes={boxes}
         />
       )}
-      <Row>
-        {boxes.length === 0 && (
-          <h1 className='vision-board-instructions'>Instructions</h1>
-        )}
-        {boxes &&
-          boxes.map((box) => (
-            <Col key={box._id}>
-              <ImgBox
-                id={box._id}
-                text={box.text}
-                imgPath={box.imgPath}
-                refreshImgBoxes={getImgBoxes}
-              />
-            </Col>
-          ))}
-      </Row>
+      {errorMessage ? (
+        <Message variant='danger'>{errorMessage}</Message>
+      ) : (
+        <Message variant='success'>Image uploaded!</Message>
+      )}
+      <h1>Instructions on how to create a vision board. </h1>
     </div>
   )
 }
