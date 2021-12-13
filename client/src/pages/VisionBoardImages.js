@@ -39,6 +39,7 @@ const VisionBoardImages = () => {
       .then((response) => {
         console.log(response)
         setBoxes(response.data)
+        console.log('imgboxes on visionboard', boxes)
       })
       .catch((err) => console.log(err))
   }
