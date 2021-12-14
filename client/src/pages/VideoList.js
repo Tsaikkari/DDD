@@ -6,7 +6,8 @@ import Message from '../components/Message'
 import Video from '../components/Video'
 import AddVideo from '../components/AddVideo'
 
-const VideoList = ({ location }) => {
+// TODO: add error msg, loading, styling and get all videos btn
+const VideoList = () => {
   const [videos, setVideos] = useState([])
   const [query, setQuery] = useState('')
 
