@@ -57,8 +57,8 @@ router.get('/user-visions', isAuthenticated, async (req, res, next) => {
 // delete vision board /api/visions/:id
 router.delete('/:id', isAuthenticated, async (req, res, next) => {
   try {
-    const visionBoard = await ImageBox.findByIdAndRemove(req.params.id)
-    res.status(201).json({ message: 'Vision Board deleted' }, visionBoard)
+    await ImageBox.findByIdAndDelete(req.params.id)
+    res.status(204).end()
   } catch (error) {
     next(new Error(error.message))
   }

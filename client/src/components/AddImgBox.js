@@ -6,7 +6,13 @@ import axios from 'axios'
 import { AuthContext } from '../context/auth'
 import FormContainer from './FormContainer'
 
-const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes, setMessage }) => {
+const AddImgBox = ({
+  addBox,
+  setAddBox,
+  refreshImgBoxes,
+  boxes,
+  setMessage,
+}) => {
   const [image, setImage] = useState('')
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)

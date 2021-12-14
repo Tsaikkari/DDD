@@ -3,7 +3,7 @@ import Draggable from 'react-draggable'
 import { Card, Image } from 'react-bootstrap'
 import axios from 'axios'
 
-const ImgBox = ({ text, imgPath, id, refreshImgBoxes }) => {
+const ImgBox = ({ text, imgPath, id, refreshVisionBoards }) => {
   const storedToken = localStorage.getItem('authToken')
 
   const config = {
@@ -17,7 +17,7 @@ const ImgBox = ({ text, imgPath, id, refreshImgBoxes }) => {
     if (window.confirm('Delete image?')) {
       try {
         await axios.delete(`/api/imgboxes/${id}`, config)
-        refreshImgBoxes()
+        refreshVisionBoards()
       } catch (err) {
         console.log(err)
       }

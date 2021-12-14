@@ -4,6 +4,7 @@ import axios from 'axios'
 import ImgBoxesHeader from '../components/ImgBoxesHeader'
 import AddImgBox from '../components/AddImgBox'
 import Message from '../components/Message'
+import useBoxes from '../hooks/useBoxes'
 
 const VisionBoardImages = () => {
   const [boxes, setBoxes] = useState([])
@@ -11,6 +12,7 @@ const VisionBoardImages = () => {
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [message, setMessage] = useState('')
 
+  //const { boxes, setBoxes, errorMessage } = useBoxes()
   const handleShowImgBoxForm = () => {
     setAddBox(!addBox)
   }
@@ -40,10 +42,10 @@ const VisionBoardImages = () => {
       <ImgBoxesHeader handleShowImgBoxForm={handleShowImgBoxForm} />
       {addBox && (
         <AddImgBox
+          boxes={boxes}
           addBox={addBox}
           setAddBox={setAddBox}
           refreshImgBoxes={getImgBoxes}
-          boxes={boxes}
           setMessage={setMessage}
         />
       )}
