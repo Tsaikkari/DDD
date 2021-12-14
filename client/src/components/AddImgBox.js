@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
-import { Form, Image, Button } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import { Form, Button, Image } from 'react-bootstrap'
 import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
@@ -9,46 +10,44 @@ const AddImgBox = ({
   addBox,
   setAddBox,
   refreshImgBoxes,
-  refreshVisionBoards,
+  boxes,
+  setMessage,
 }) => {
-  const [imgPath, setImgPath] = useState('')
+  const [image, setImage] = useState('')
   const [text, setText] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const { user } = useContext(AuthContext)
   const storedToken = localStorage.getItem('authToken')
 
-  const onImage = (e) => {
-    setImgPath(e.target.value)
+  const { id } = useParams()
 
-    console.log('IMG PATHHHHHHHHHHHHH', e.target.value)
+  const onChange = (e) => {
+    setImage(e.target.files[0])
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const formData = new FormData()
+    formData.append('image', image)
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${storedToken}`,
+      },
+    }
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${storedToken}`,
-        },
-      }
+      setLoading(true)
+      const res = await axios.post('/api/imgboxes/upload', formData)
+      const imgPath = res.data.secure_url
+      const newImgBox = { imgPath, text, user, id }
 
-      const newBoard = { title: 'Vision Board', user }
-      const newImgBox = { imgPath, text, user }
-
-      await axios.all([
-        await axios.post('/api/visions', newBoard, config),
-        await axios.post('/api/imgbox', newImgBox, config),
-      ])
-      const response = axios.spread((obj1, obj2) => {
-        return obj1.data, obj2.data
-      })
-      console.log(response)
-
-      setImgPath('')
+      await axios.post('/api/imgboxes', newImgBox, config)
+      setLoading(!loading)
+      setImage(newImgBox.imgPath)
       setText('')
-      refreshVisionBoards()
       refreshImgBoxes()
+      setMessage('Image uploaded!')
       setAddBox(!addBox)
     } catch (err) {
       console.log(err)
@@ -57,26 +56,21 @@ const AddImgBox = ({
 
   return (
     <FormContainer>
-      <Form onSubmit={handleSubmit} enctype='multipart/form-data'>
-        <Form.Group controlId='title' className='mb-3'>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className='mb-3'>
           <Form.Label>Choose Image</Form.Label>
           <Form.Control
             accept='image/*'
             type='file'
-            value={imgPath}
             id='image'
             name='image'
-            //onChange={(e) => setImgPath(e.target.value)}
-            onChange={onImage}
-          />
-          <Image
-            id='previwImage'
-            src='#'
-            alt='visionboard-img'
-            width='400px'
-            height='400px'
+            onChange={onChange}
           />
         </Form.Group>
+        {/* <Form.Group className='mb-3'>
+         
+          <Image src={image} fluid></Image>
+        </Form.Group> */}
         <Form.Group controlId='text' className='mb-3'>
           <Form.Control
             type='textarea'

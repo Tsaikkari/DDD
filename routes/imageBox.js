@@ -16,44 +16,54 @@ router.get('/', isAuthenticated, async (req, res, next) => {
   }
 })
 
-// TODO
-// add image box to vision board
-router.post(
-  '/imgbox',
-  uploader.single('image'),
-  isAuthenticated,
-  async (req, res, next) => {
-    try {
-      const { text, user } = req.body
-      const imgPath = req.file.path
-      if (!imgPath || !user) {
-        res.status(400)
-        return
-      }
-
-      const userInfo = await User.findById(user._id)
-
-      const image = await ImageBox.create({
-        imgPath: imgPath,
-        text,
-        user: userInfo._id,
-      })
-
-      const visionBoards = await VisionBoard.find({ user: userInfo._id })
-      const currentVisionBoard = visionBoards[visionBoards.length - 1]
-
-      const updatedBoard = await VisionBoard.findByIdAndUpdate(
-        currentVisionBoard._id,
-        {
-          $push: { images: image._id },
-        }
-      )
-
-      res.status(200).json(updatedBoard)
-    } catch (err) {
-      next(new Error(err.message))
-    }
+// upload image to Cloudinary
+router.post('/upload', uploader.single('image'), (req, res, next) => {
+  try {
+    res.json({ secure_url: req.file.path })
+  } catch (err) {
+    next(new Error(err))
   }
-)
+})
+
+// add image box to vision board
+router.post('/', isAuthenticated, async (req, res, next) => {
+  try {
+    const { text, user, id, imgPath } = req.body
+    if (!imgPath || !user || !id) {
+      res.status(400)
+      return
+    }
+
+    const userInfo = await User.findById(user._id)
+
+    const image = await ImageBox.create({
+      imgPath: imgPath,
+      text,
+      user: userInfo._id,
+      visionBoard: id,
+    })
+
+    const updatedBoard = await VisionBoard.findByIdAndUpdate(
+      image.visionBoard,
+      {
+        $push: { images: image._id },
+      }
+    )
+
+    res.status(200).json(updatedBoard)
+  } catch (err) {
+    next(new Error(err.message))
+  }
+})
+
+// delete imgbox /api/imgboxes/:id
+router.delete('/:id', isAuthenticated, async (req, res, next) => {
+  try {
+    await ImageBox.findByIdAndDelete(req.params.id)
+    res.status(204).end()
+  } catch (error) {
+    next(new Error(error.message))
+  }
+})
 
 module.exports = router

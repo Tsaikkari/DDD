@@ -43,11 +43,11 @@ router.post('/', isAuthenticated, async (req, res, next) => {
 // get vision boards of logged in user /api/visions/user
 router.get('/user-visions', isAuthenticated, async (req, res, next) => {
   try {
-    console.log(res.data, 'RES DATA BOARDS')
     const visionBoards = await VisionBoard.find({ user: req.payload }).populate(
       'images',
       'id imgPath text'
     )
+
     res.status(200).json(visionBoards)
   } catch (err) {
     next(new Error(err.message))
@@ -55,5 +55,13 @@ router.get('/user-visions', isAuthenticated, async (req, res, next) => {
 })
 
 // delete vision board /api/visions/:id
+router.delete('/:id', isAuthenticated, async (req, res, next) => {
+  try {
+    await VisionBoard.findByIdAndDelete(req.params.id)
+    res.status(204).end()
+  } catch (error) {
+    next(new Error(error.message))
+  }
+})
 
 module.exports = router

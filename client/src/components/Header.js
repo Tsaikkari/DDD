@@ -9,7 +9,6 @@ const Header = () => {
 
   return (
     <Navbar bg='light' expand='lg' collapseOnSelect className='navbar'>
-      {/* <Container> */}
       <LinkContainer to='/'>
         <Navbar.Brand>DDD</Navbar.Brand>
       </LinkContainer>
@@ -21,17 +20,17 @@ const Header = () => {
             <>
               <LinkContainer to='/videos'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> My Videos
+                  <i className='fab fa-youtube'></i> My Videos
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to='/visionboards'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> My Vision Boards
+                  <i className='fab fa-wpexplorer'></i> My Vision Boards
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to='/visionboards'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> My Notes
+                  <i className='fas fa-clipboard'></i> My Notes
                 </Nav.Link>
               </LinkContainer>
               <NavDropdown title={user.name} id='username'>
@@ -45,7 +44,7 @@ const Header = () => {
             <div className='nav-not-signedin'>
               <LinkContainer to='/signup'>
                 <Nav.Link>
-                  <i className='fas fa-birthday-cake'></i> Sign Up
+                  <i className='fas fa-user-plus'></i> Sign Up
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to='/login'>
@@ -57,7 +56,6 @@ const Header = () => {
           )}
         </Nav>
       </Navbar.Collapse>
-      {/* </Container> */}
     </Navbar>
   )
 }

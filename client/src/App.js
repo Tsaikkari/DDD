@@ -7,6 +7,7 @@ import Navbar from './components/Header'
 import Profile from './pages/Profile'
 import VideoList from './pages/VideoList'
 import Visions from './pages/Visions'
+import VisionBoardImages from './pages/VisionBoardImages'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/videos' element={<VideoList />} />
         <Route path='/visionboards' element={<Visions />} />
+        <Route path='/visionboards/:id' element={<VisionBoardImages />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
       </Routes>

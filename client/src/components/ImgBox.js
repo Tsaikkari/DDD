@@ -1,31 +1,49 @@
 import React from 'react'
 import Draggable from 'react-draggable'
 import { Card, Image } from 'react-bootstrap'
+import axios from 'axios'
 
-const ImgBox = ({ box, boxes, setBoxes }) => {
+const ImgBox = ({ text, imgPath, id, refreshVisionBoards }) => {
+  const storedToken = localStorage.getItem('authToken')
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${storedToken}`,
+    },
+  }
+
+  const deleteImage = async () => {
+    if (window.confirm('Delete image?')) {
+      try {
+        await axios.delete(`/api/imgboxes/${id}`, config)
+        refreshVisionBoards()
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
   return (
-    <Draggable grid={[400, 400]}>
-      <Card className='img-card' key={box._id}>
-        <div className='box-imgs'>
-          <Image
-            src={box.imgPath}
-            style={{ height: '400px', width: '400px' }}
-            alt='vision-board-img'
-          ></Image>
+    <Draggable>
+      <Card className='img-card'>
+        <Image
+          className='img'
+          src={imgPath}
+          alt='vision-board-img'
+          fluid
+        ></Image>
+        <div className='text-trash'>
+          <p>{text}</p>
           <p
             onClick={() => {
-              const boxList = boxes.filter((item) => {
-                if (item._id !== box._id) {
-                  return item
-                }
-              })
-              setBoxes(boxList)
+              deleteImage(id)
             }}
           >
-            <i class='fas fa-trash'></i>
+            {' '}
+            *
           </p>
         </div>
-        <p>{box.text}</p>
       </Card>
     </Draggable>
   )

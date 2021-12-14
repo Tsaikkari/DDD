@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Container } from 'react-bootstrap'
 
-import AddImgBox from '../components/AddImgBox'
 import VisionsHeader from '../components/VisionsHeader'
 import VisionBoard from '../components/VisionBoard'
+import AddVisionBoard from '../components/AddVisionBoard'
 
 const Visions = () => {
   const [boards, setBoards] = useState([])
-  const [boxes, setBoxes] = useState([])
-  const [addBox, setAddBox] = useState(false)
+  const [addBoard, setAddBoard] = useState(false)
+
   //add search by title or date
 
   const storedToken = localStorage.getItem('authToken')
@@ -20,59 +19,49 @@ const Visions = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log(response)
-        setBoards(response.data)
+        const sorted = response.data.reverse()
+        setBoards(sorted)
       })
       .catch((err) => console.log(err))
   }
 
   useEffect(() => {
     getVisionBoards()
+    //eslint-disable-next-line
   }, [])
 
-  const getImgBoxes = () => {
-    axios
-      .get('/api/imgbox', {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        console.log(response)
-        setBoxes(response.data)
-      })
-      .catch((err) => console.log(err))
-  }
-
-  useEffect(() => {
-    getImgBoxes()
-  }, [])
-
-  const handleShowImgBoxForm = () => {
-    setAddBox(!addBox)
+  const handleShowVisionBoardForm = () => {
+    setAddBoard(!addBoard)
   }
 
   return (
     <div>
-      <VisionsHeader handleShowImgBoxForm={handleShowImgBoxForm} />
+      <VisionsHeader handleShowVisionBoardForm={handleShowVisionBoardForm} />
       <main>
-        {addBox && (
-          <AddImgBox
-            addBox={addBox}
-            setAddBox={setAddBox}
+        {addBoard && (
+          <AddVisionBoard
+            addBoard={addBoard}
+            setAddBoard={setAddBoard}
+            boards={boards}
             refreshVisionBoards={getVisionBoards}
-            refreshImgBoxes={getImgBoxes}
           />
         )}
-        <div className='boards'>
-          {boards.length > 0 ? (
-            boards.map((board) => (
-              <Container key={board._id} className='vision-board-container'>
-                <VisionBoard boxes={boxes} setBoxes={setBoxes} />
-              </Container>
-            ))
-          ) : (
-            <VisionBoard boxes={boxes} setBoxes={setBoxes} />
-          )}
-        </div>
+        {boards.length === 0 ? (
+          <p>Instructions</p>
+        ) : (
+          <div className='boards'>
+            {boards.map((board) => (
+              <div key={board._id}>
+                <VisionBoard
+                  images={board.images}
+                  title={board.title}
+                  id={board._id}
+                  refreshVisionBoards={getVisionBoards}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </main>
     </div>
   )

@@ -19,7 +19,7 @@ app.use('/auth', auth)
 app.use('/api/users', isAuthenticated, userRouter)
 app.use('/api/videos', videoRouter)
 app.use('/api/visions', visionBoardRouter)
-app.use('/api/imgbox', imageBoxRouter)
+app.use('/api/imgboxes', imageBoxRouter)
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app)
