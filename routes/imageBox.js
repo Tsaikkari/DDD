@@ -56,7 +56,7 @@ router.post('/', isAuthenticated, async (req, res, next) => {
   }
 })
 
-// TODO: should delete without refresh  /api/imgboxes/:id
+// delete imgbox /api/imgboxes/:id
 router.delete('/:id', isAuthenticated, async (req, res, next) => {
   try {
     await ImageBox.findByIdAndDelete(req.params.id)
