@@ -9,6 +9,7 @@ import SearchBox from '../components/SearchBox'
 
 const VideoList = () => {
   const [videos, setVideos] = useState([])
+  const [search, setSearch] = useState('')
 
   const storedToken = localStorage.getItem('authToken')
 
