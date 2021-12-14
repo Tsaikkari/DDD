@@ -26,7 +26,6 @@ const AddVisionBoard = ({ addBoard, setAddBoard, refreshVisionBoards }) => {
       const newBoard = { title, user }
       const res = await axios.post('/api/visions', newBoard, config)
 
-      refreshVisionBoards()
       setTitle('')
       setAddBoard(!addBoard)
       refreshVisionBoards()

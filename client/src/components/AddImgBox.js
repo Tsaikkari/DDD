@@ -6,13 +6,7 @@ import axios from 'axios'
 import { AuthContext } from '../context/auth'
 import FormContainer from './FormContainer'
 
-const AddImgBox = ({
-  addBox,
-  setAddBox,
-  refreshImgBoxes,
-  setMessage,
-  message,
-}) => {
+const AddImgBox = ({ addBox, setAddBox, refreshImgBoxes, setMessage }) => {
   const [image, setImage] = useState('')
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
@@ -24,7 +18,6 @@ const AddImgBox = ({
 
   const onChange = (e) => {
     setImage(e.target.files[0])
-    console.log('PHOTO', e.target.files[0])
   }
 
   const handleSubmit = async (e) => {
@@ -42,7 +35,7 @@ const AddImgBox = ({
       const res = await axios.post('/api/imgboxes/upload', formData)
       const imgPath = res.data.secure_url
       const newImgBox = { imgPath, text, user, id }
-      console.log(newImgBox, 'imgbox')
+
       await axios.post('/api/imgboxes', newImgBox, config)
       setLoading(!loading)
       setImage(newImgBox.imgPath)

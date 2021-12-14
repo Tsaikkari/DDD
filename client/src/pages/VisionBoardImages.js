@@ -44,7 +44,6 @@ const VisionBoardImages = () => {
           setAddBox={setAddBox}
           refreshImgBoxes={getImgBoxes}
           boxes={boxes}
-          message={message}
           setMessage={setMessage}
         />
       )}

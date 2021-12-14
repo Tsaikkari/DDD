@@ -56,11 +56,11 @@ router.post('/', isAuthenticated, async (req, res, next) => {
   }
 })
 
-// TODO: delete img /api/imgboxes/:id
+// TODO: should delete without refresh  /api/imgboxes/:id
 router.delete('/:id', isAuthenticated, async (req, res, next) => {
   try {
-    const image = await ImageBox.findByIdAndRemove(req.params.id)
-    res.status(201).json({ message: 'Image deleted' }, image)
+    await ImageBox.findByIdAndDelete(req.params.id)
+    res.status(204).end()
   } catch (error) {
     next(new Error(error.message))
   }

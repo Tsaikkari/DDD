@@ -4,10 +4,19 @@ import { Card, Image } from 'react-bootstrap'
 import axios from 'axios'
 
 const ImgBox = ({ text, imgPath, id, refreshImgBoxes }) => {
+  const storedToken = localStorage.getItem('authToken')
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${storedToken}`,
+    },
+  }
+
   const deleteImage = async () => {
     if (window.confirm('Delete image?')) {
       try {
-        await axios.delete(`/api/imgboxes/${id}`)
+        await axios.delete(`/api/imgboxes/${id}`, config)
         refreshImgBoxes()
       } catch (err) {
         console.log(err)
