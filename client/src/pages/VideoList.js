@@ -16,7 +16,7 @@ const VideoList = () => {
   const handleSearch = async (e) => {
     try {
       e.preventDefault()
-      setQuery((q) => (q = query.replace(/^\s+|\s+$|\s+(?=\s)/g, '')))
+      setQuery((q) => (q = query))
 
       const response = await axios.get(
         `/api/videos/user-videos?title=${query}`,
@@ -26,8 +26,8 @@ const VideoList = () => {
       )
 
       setVideos(
-        response.data.filter(
-          (video) => video.title.toLowerCase() === query.toLowerCase()
+        response.data.filter((video) =>
+          video.title.toLowerCase().includes(query.toLowerCase())
         )
       )
       setQuery('')
