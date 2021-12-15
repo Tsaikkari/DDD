@@ -2,17 +2,9 @@ import React from 'react'
 import Draggable from 'react-draggable'
 import { Card, Image } from 'react-bootstrap'
 import axios from 'axios'
+import { config } from '../reqHeaders'
 
 const ImgBox = ({ text, imgPath, id, refreshVisionBoards }) => {
-  const storedToken = localStorage.getItem('authToken')
-
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${storedToken}`,
-    },
-  }
-
   const deleteImage = async () => {
     if (window.confirm('Delete image?')) {
       try {

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { AuthContext } from '../context/auth'
 import Message from '../components/Message'
 import Footer from '../components/Footer'
+import { config } from '../reqHeaders'
 
 const Profile = () => {
   const [name, setName] = useState('')
@@ -31,13 +32,6 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${storedToken}`,
-      },
-    }
-
     const updateUser = { email, name }
 
     axios

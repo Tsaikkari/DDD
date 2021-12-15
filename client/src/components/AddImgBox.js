@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
 import FormContainer from './FormContainer'
+import { config } from '../reqHeaders'
 
 const AddImgBox = ({
   addBox,
@@ -18,7 +19,6 @@ const AddImgBox = ({
   const [loading, setLoading] = useState(false)
 
   const { user } = useContext(AuthContext)
-  const storedToken = localStorage.getItem('authToken')
 
   const { id } = useParams()
 
@@ -30,12 +30,6 @@ const AddImgBox = ({
     e.preventDefault()
     const formData = new FormData()
     formData.append('image', image)
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${storedToken}`,
-      },
-    }
     try {
       setLoading(true)
       const res = await axios.post('/api/imgboxes/upload', formData)

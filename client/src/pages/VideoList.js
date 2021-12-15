@@ -10,6 +10,7 @@ import AddVideo from '../components/AddVideo'
 const VideoList = () => {
   const [videos, setVideos] = useState([])
   const [query, setQuery] = useState('')
+  const [showAll, setShowAll] = useState(true)
 
   const storedToken = localStorage.getItem('authToken')
 
@@ -31,8 +32,12 @@ const VideoList = () => {
         )
       )
       setQuery('')
+      setShowAll(!showAll)
     } catch (err) {
       console.log(err)
+    }
+    if (e && !showAll) {
+      getVideos()
     }
   }
 
@@ -64,7 +69,7 @@ const VideoList = () => {
           <AddVideo refreshVideos={getVideos} videos={videos} />
         </Col>
         <Col>
-          <Form onSubmit={handleSearch}>
+          <Form onSubmit={handleSearch} className='video-search'>
             <Form.Group controlId='title'>
               <Form.Control
                 type='text'
@@ -74,7 +79,11 @@ const VideoList = () => {
                 onChange={(e) => setQuery(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            <Button type='submit'>Search</Button>
+            <div>
+              <Button className='search-btn' type='submit'>
+                {showAll ? 'Search' : 'All Videos'}
+              </Button>
+            </div>
           </Form>
         </Col>
       </Row>

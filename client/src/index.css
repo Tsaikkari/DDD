@@ -101,31 +101,32 @@ body {
 .video-container {
   margin: 1rem 3.8rem;
 }
-.video-form {
+.video-form,
+.video-search {
   display: flex;
 }
 
+.video-search {
+  margin: 2.3rem 0;
+  max-width: 100%;
+}
+
 .url-input {
-  margin-left: 0.8rem;
+  margin-left: 0.4rem;
 }
 
 .add-video-header {
   display: flex;
 }
 
-.add-video-btn {
+.add-video-btn,
+.search-btn {
   max-width: 92.5%;
   margin: 0 0 0 0.4rem;
 }
 
 .video-title {
   margin-top: 0.7rem;
-}
-
-/*search-box*/
-.search-input {
-  margin: 2.3rem 0;
-  max-width: 100%;
 }
 
 /*add vision board*/
@@ -146,7 +147,8 @@ body {
 }
 
 .add-imgbox-btn,
-.save-img-btn {
+.save-img-btn,
+.search-btn {
   background: #000;
   color: pink;
 }

@@ -4,14 +4,13 @@ import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
 
 import { AuthContext } from '../context/auth'
+import { config } from '../reqHeaders'
 
 export default function AddVideo(props) {
   const [title, setTitle] = useState('')
   const [url, setUrl] = useState('')
 
   const { user } = useContext(AuthContext)
-
-  const storedToken = localStorage.getItem('authToken')
 
   const handleUrl = (event) => {
     setUrl((url) => (url = event.target.value))
@@ -24,12 +23,6 @@ export default function AddVideo(props) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${storedToken}`,
-        },
-      }
       const video = { title, url, user }
       await axios.post('/api/videos', video, config)
       setTitle('')

@@ -20,9 +20,7 @@ router.get(
   '/user-videos?title=:query',
   isAuthenticated,
   async (req, res, next) => {
-    console.log(req.query, 'REQQUERY')
     try {
-      console.log('res-data', res.data)
       const video = await Video.find({
         user: req.payload,
         title: req.query.title,
