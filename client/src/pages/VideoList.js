@@ -90,7 +90,12 @@ const VideoList = () => {
       <Row>
         {videos.map((video) => (
           <Col key={video._id}>
-            <Video title={video.title} url={video.url} />
+            <Video
+              title={video.title}
+              url={video.url}
+              refreshVideos={getVideos}
+              id={video._id}
+            />
           </Col>
         ))}
       </Row>

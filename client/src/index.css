@@ -97,10 +97,19 @@ body {
   font-weight: 600;
 }
 
-/*add video*/
+/*video*/
 .video-container {
   margin: 1rem 3.8rem;
 }
+
+.video-card {
+  width: 65.2%;
+}
+
+.text-trash.video {
+  margin: 0 0.5rem;
+}
+
 .video-form,
 .video-search {
   display: flex;
@@ -129,7 +138,11 @@ body {
   margin-top: 0.7rem;
 }
 
-/*add vision board*/
+.delete {
+  font-size: 1.8rem;
+}
+
+/*vision board*/
 .vision-board-form-container {
   display: flex;
   margin-left: 1.3rem;

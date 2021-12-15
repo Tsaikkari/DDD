@@ -7,7 +7,7 @@ import { config } from '../reqHeaders'
 
 const VisionBoard = ({ title, images, id, refreshVisionBoards }) => {
   const deleteVisionBoard = async (id) => {
-    if (window.confirm('Delete vision board?')) {
+    if (window.confirm('Delete this vision board?')) {
       try {
         await axios.delete(`/api/visions/${id}`, config)
         refreshVisionBoards()
@@ -21,6 +21,7 @@ const VisionBoard = ({ title, images, id, refreshVisionBoards }) => {
       <div className='text-trash'>
         <p className='vision-board-title'>{title}</p>
         <p
+          className='delete'
           onClick={() => {
             deleteVisionBoard(id)
           }}

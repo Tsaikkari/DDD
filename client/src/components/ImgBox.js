@@ -28,6 +28,7 @@ const ImgBox = ({ text, imgPath, id, refreshVisionBoards }) => {
         <div className='text-trash'>
           <p>{text}</p>
           <p
+            className='delete'
             onClick={() => {
               deleteImage(id)
             }}
