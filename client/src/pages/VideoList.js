@@ -1,18 +1,34 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Row, Col, Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 
 import Message from '../components/Message'
 import Video from '../components/Video'
 import AddVideo from '../components/AddVideo'
+import YouTube from '../components/YouTube'
+import { config } from '../reqHeaders'
+import { AuthContext } from '../context/auth'
 
-// TODO: add error msg, loading, styling and get all videos btn
+// TODO: add error msg, loading
 const VideoList = () => {
   const [videos, setVideos] = useState([])
   const [query, setQuery] = useState('')
+  const [queryterm, setQueryTerm] = useState('')
   const [showAll, setShowAll] = useState(true)
 
+  const { user } = useContext(AuthContext)
+
   const storedToken = localStorage.getItem('authToken')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await axios.get(`/api/youtube/video?query=${queryterm}`)
+      console.log(response, 'YOUTUBEVIDEO')
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   const handleSearch = async (e) => {
     try {
@@ -50,7 +66,7 @@ const VideoList = () => {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          console.log(response)
+          //console.log(response)
           setVideos(response.data)
         })
         .catch((err) => console.log(err))
@@ -69,21 +85,26 @@ const VideoList = () => {
           <AddVideo refreshVideos={getVideos} videos={videos} />
         </Col>
         <Col>
+          <YouTube
+            handleSubmit={handleSubmit}
+            queryterm={queryterm}
+            setQueryTerm={setQueryTerm}
+          />
+        </Col>
+        <Col>
           <Form onSubmit={handleSearch} className='video-search'>
             <Form.Group controlId='title'>
               <Form.Control
                 type='text'
-                placeholder='Search video by its title...'
+                placeholder='Search from your videos by title'
                 value={query}
                 name='title'
                 onChange={(e) => setQuery(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            <div>
-              <Button className='search-btn' type='submit'>
-                {showAll ? 'Search' : 'All Videos'}
-              </Button>
-            </div>
+            <Button className='search-btn' type='submit'>
+              {showAll ? 'Search' : 'All Videos'}
+            </Button>
           </Form>
         </Col>
       </Row>
