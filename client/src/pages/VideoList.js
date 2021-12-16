@@ -5,7 +5,7 @@ import axios from 'axios'
 import Message from '../components/Message'
 import Video from '../components/Video'
 import AddVideo from '../components/AddVideo'
-import SearchBox from '../components/SearchBox'
+//import YouTube from '../components/YouTube'
 
 // TODO: add error msg, loading
 const VideoList = () => {

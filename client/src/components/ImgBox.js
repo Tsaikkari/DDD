@@ -41,7 +41,7 @@ const ImgBox = ({ text, imgPath, id, refreshVisionBoards }) => {
             }}
           >
             {' '}
-            *
+            ~
           </p>
         </div>
       </Card>

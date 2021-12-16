@@ -72,11 +72,11 @@ const Profile = () => {
                     Create your vision boards
                   </Link>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                {/* <ListGroup.Item>
                   <Link to='notes' className='link'>
                     Take beautiful notes
                   </Link>
-                </ListGroup.Item>
+                </ListGroup.Item> */}
               </ListGroup>
               <Image src='' alt='' className='profile-page-img' />
             </Col>

@@ -4,6 +4,7 @@ import { Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
+import { config } from '../reqHeaders'
 
 const AddVisionBoard = ({ addBoard, setAddBoard, refreshVisionBoards }) => {
   const [title, setTitle] = useState('')
@@ -12,17 +13,9 @@ const AddVisionBoard = ({ addBoard, setAddBoard, refreshVisionBoards }) => {
 
   const { user } = useContext(AuthContext)
 
-  const storedToken = localStorage.getItem('authToken')
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${storedToken}`,
-        },
-      }
       const newBoard = { title, user }
       const res = await axios.post('/api/visions', newBoard, config)
 
