@@ -21,9 +21,6 @@ router.get(
         expiresIn: '12h',
       })
       res.status(200).json({ token: token })
-
-      res.cookie('token', token)
-      //res.redirect('http://localhost:3000/users/profile')
     } catch (err) {
       next(new Error(err.message))
     }
