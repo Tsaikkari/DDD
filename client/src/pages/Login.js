@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Form, Row, Col, Button } from 'react-bootstrap'
+import { Form, Row, Col, Card, Button } from 'react-bootstrap'
 import axios from 'axios'
 
 import Message from '../components/Message'
@@ -31,6 +31,10 @@ const Login = () => {
         const errorMsg = err.response.data.message
         setErrorMessage(errorMsg)
       })
+  }
+
+  const handleGoogleLogin = () => {
+    window.open('/api/auth/google')
   }
 
   return (
@@ -66,6 +70,17 @@ const Login = () => {
           Don't have an account? <Link to={'/signup'}>Sign Up</Link>
         </Col>
       </Row>
+      <Form>
+        <Card>
+          <Button
+            className='btn btn-block btn-social btn-google'
+            onClick={handleGoogleLogin}
+          >
+            <i className='fab fa-google'></i>
+            Login with Google
+          </Button>
+        </Card>
+      </Form>
     </FormContainer>
   )
 }

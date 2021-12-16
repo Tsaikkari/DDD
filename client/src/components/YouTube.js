@@ -7,7 +7,7 @@ const YouTube = ({ queryterm, setQueryTerm, handleSubmit }) => {
         <Form.Group controlId='queryterm'>
           <Form.Control
             type='text'
-            placeholder='Search from youtube'
+            placeholder='Search from YouTube'
             value={queryterm}
             name='queryterm'
             onChange={(e) => setQueryTerm(e.target.value)}

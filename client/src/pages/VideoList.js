@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 
@@ -6,8 +6,6 @@ import Message from '../components/Message'
 import Video from '../components/Video'
 import AddVideo from '../components/AddVideo'
 import YouTube from '../components/YouTube'
-import { config } from '../reqHeaders'
-import { AuthContext } from '../context/auth'
 
 // TODO: add error msg, loading
 const VideoList = () => {
@@ -16,14 +14,12 @@ const VideoList = () => {
   const [queryterm, setQueryTerm] = useState('')
   const [showAll, setShowAll] = useState(true)
 
-  const { user } = useContext(AuthContext)
-
   const storedToken = localStorage.getItem('authToken')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.get(`/api/youtube/video?query=${queryterm}`)
+      const response = await axios.get(`/api/youtube/video?search=${queryterm}`)
       console.log(response, 'YOUTUBEVIDEO')
     } catch (err) {
       console.log(err)
@@ -66,7 +62,6 @@ const VideoList = () => {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          //console.log(response)
           setVideos(response.data)
         })
         .catch((err) => console.log(err))
@@ -81,22 +76,22 @@ const VideoList = () => {
   return (
     <div className='video-container'>
       <Row>
-        <Col>
+        <Col md={6}>
           <AddVideo refreshVideos={getVideos} videos={videos} />
         </Col>
-        <Col>
+        <Col md={3}>
           <YouTube
             handleSubmit={handleSubmit}
             queryterm={queryterm}
             setQueryTerm={setQueryTerm}
           />
         </Col>
-        <Col>
+        <Col md={3}>
           <Form onSubmit={handleSearch} className='video-search'>
             <Form.Group controlId='title'>
               <Form.Control
                 type='text'
-                placeholder='Search from your videos by title'
+                placeholder='Search from your videos'
                 value={query}
                 name='title'
                 onChange={(e) => setQuery(e.target.value)}
@@ -110,7 +105,7 @@ const VideoList = () => {
       </Row>
       <Row>
         {videos.map((video) => (
-          <Col key={video._id}>
+          <Col key={video._id} sm={12} md={6} lg={4} xl={4}>
             <Video
               title={video.title}
               url={video.url}

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import { Form, Button, Image } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
