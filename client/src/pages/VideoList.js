@@ -5,26 +5,14 @@ import axios from 'axios'
 import Message from '../components/Message'
 import Video from '../components/Video'
 import AddVideo from '../components/AddVideo'
-//import YouTube from '../components/YouTube'
 
 // TODO: add error msg, loading
 const VideoList = () => {
   const [videos, setVideos] = useState([])
   const [query, setQuery] = useState('')
-  //const [queryterm, setQueryTerm] = useState('')
   const [showAll, setShowAll] = useState(true)
 
   const storedToken = localStorage.getItem('authToken')
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   try {
-  //     const response = await axios.get(`/api/youtube/video?search=${queryterm}`)
-  //     console.log(response, 'YOUTUBEVIDEO')
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
 
   const handleSearch = async (e) => {
     try {
@@ -79,13 +67,6 @@ const VideoList = () => {
         <Col md={8}>
           <AddVideo refreshVideos={getVideos} videos={videos} />
         </Col>
-        {/* <Col md={3}>
-          <YouTube
-            handleSubmit={handleSubmit}
-            queryterm={queryterm}
-            setQueryTerm={setQueryTerm}
-          />
-        </Col> */}
         <Col md={4}>
           <Form onSubmit={handleSearch} className='video-search'>
             <Form.Group controlId='title'>
