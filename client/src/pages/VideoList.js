@@ -5,7 +5,7 @@ import axios from 'axios'
 import Message from '../components/Message'
 import Video from '../components/Video'
 import AddVideo from '../components/AddVideo'
-import YouTube from '../components/YouTube'
+//import YouTube from '../components/YouTube'
 
 // TODO: add error msg, loading
 const VideoList = () => {
@@ -76,16 +76,16 @@ const VideoList = () => {
   return (
     <div className='video-container'>
       <Row>
-        <Col md={6}>
+        <Col md={9}>
           <AddVideo refreshVideos={getVideos} videos={videos} />
         </Col>
-        <Col md={3}>
+        {/* <Col md={3}>
           <YouTube
             handleSubmit={handleSubmit}
             queryterm={queryterm}
             setQueryTerm={setQueryTerm}
           />
-        </Col>
+        </Col> */}
         <Col md={3}>
           <Form onSubmit={handleSearch} className='video-search'>
             <Form.Group controlId='title'>

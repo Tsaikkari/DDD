@@ -29,6 +29,11 @@ body {
   padding-left: 68%;
 }
 
+/*home page*/
+.homepage-header {
+  font-size: 60px;
+  margin-top: 17%;
+}
 /*form button*/
 .save-btn {
   background-color: black !important;

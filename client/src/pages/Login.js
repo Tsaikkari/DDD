@@ -33,10 +33,6 @@ const Login = () => {
       })
   }
 
-  const handleGoogleLogin = () => {
-    window.open('/api/auth/google')
-  }
-
   return (
     <FormContainer>
       <h1 className='m-4'>Login</h1>
@@ -70,17 +66,17 @@ const Login = () => {
           Don't have an account? <Link to={'/signup'}>Sign Up</Link>
         </Col>
       </Row>
-      <Form>
+      {/* <Form>
         <Card>
-          <Button
+          <a
             className='btn btn-block btn-social btn-google'
-            onClick={handleGoogleLogin}
+            href='http://localhost:5005/api/auth/google/dailydose'
           >
             <i className='fab fa-google'></i>
             Login with Google
-          </Button>
+          </a>
         </Card>
-      </Form>
+      </Form> */}
     </FormContainer>
   )
 }
