@@ -47,7 +47,16 @@ const Visions = () => {
           />
         )}
         {boards.length === 0 ? (
-          <p>Instructions</p>
+          <div className='vision-board-instructions'>
+            <h3>
+              Create a vision board by clicking on the <b>Add Board</b> button.
+            </h3>
+            <h4>Give the vision board a title and click Save.</h4>
+            <p>
+              You can add multiple vision boards and delete them by clicking the
+              little star on upper right corner.
+            </p>
+          </div>
         ) : (
           <div className='boards'>
             {boards.map((board) => (

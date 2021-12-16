@@ -108,11 +108,12 @@ body {
 }
 
 .video-card {
-  width: 29.66vw;
+  border: none;
+  width: 24vw;
 }
 
 .text-trash.video {
-  margin: 0 0.5rem;
+  padding: 0 1rem;
 }
 
 .video-form,
@@ -210,7 +211,7 @@ body {
 }
 
 .vision-board-instructions {
-  padding-top: 1rem;
+  padding-top: 3rem;
 }
 
 /*footer*/

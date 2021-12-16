@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Form, Button } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 
 import Message from '../components/Message'
@@ -11,20 +11,20 @@ import AddVideo from '../components/AddVideo'
 const VideoList = () => {
   const [videos, setVideos] = useState([])
   const [query, setQuery] = useState('')
-  const [queryterm, setQueryTerm] = useState('')
+  //const [queryterm, setQueryTerm] = useState('')
   const [showAll, setShowAll] = useState(true)
 
   const storedToken = localStorage.getItem('authToken')
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const response = await axios.get(`/api/youtube/video?search=${queryterm}`)
-      console.log(response, 'YOUTUBEVIDEO')
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   try {
+  //     const response = await axios.get(`/api/youtube/video?search=${queryterm}`)
+  //     console.log(response, 'YOUTUBEVIDEO')
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   const handleSearch = async (e) => {
     try {
