@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, FormText } from 'react-bootstrap'
 import axios from 'axios'
 
 import { AuthContext } from '../context/auth'
@@ -67,8 +67,9 @@ const AddImgBox = ({
         </Form.Group> */}
         <Form.Group controlId='text' className='mb-3'>
           <Form.Control
-            type='textarea'
-            rows='5'
+            className='img-text'
+            as='textarea'
+            rows='3'
             placeholder='Add text'
             value={text}
             onChange={(e) => setText(e.target.value)}

@@ -32,8 +32,8 @@ body {
 /*home page*/
 .homepage-header {
   font-size: 60px;
-  margin-top: 17%;
 }
+
 /*form button*/
 .save-btn {
   background-color: black !important;
@@ -104,7 +104,7 @@ body {
 
 /*video*/
 .video-row {
-  padding: 1rem 0;
+  padding: 1.7rem 0;
   border: solid 1px #ccc;
   border-radius: 5px;
 }
@@ -134,7 +134,10 @@ body {
 }
 
 .add-video-header {
+  color: #804a75;
   display: flex;
+  margin-top: 0.4rem;
+  margin-bottom: 0.15;
 }
 
 .add-video-btn,
@@ -148,7 +151,14 @@ body {
 }
 
 .delete {
-  font-size: 1.8rem;
+  margin-bottom: 0;
+  padding-top: 0.1rem;
+  font-size: 3rem;
+}
+
+.delete-video {
+  padding-top: 0.5rem;
+  font-size: 1.4rem;
 }
 
 /*vision board*/
@@ -166,6 +176,10 @@ body {
   position: absolute;
   left: 1.5rem;
   top: -0.3rem;
+}
+
+.vision-board-delete {
+  color: #ccc;
 }
 
 .add-imgbox-btn,
@@ -190,9 +204,21 @@ body {
   margin: 0.2rem 0.7rem;
 }
 
+.img-text {
+  width: 100%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 .text-trash {
   display: flex;
   justify-content: space-evenly;
+}
+
+.title-trash {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
 }
 
 .boards {
@@ -213,8 +239,17 @@ body {
   font-size: 1.5rem;
 }
 
-.vision-board-instructions {
+.vision-board-instructions,
+.add-images-instructions {
   padding-top: 3rem;
+}
+
+.add-images-instructions p,
+.vision-board-instructions p {
+  font-size: 1.35rem;
+  line-height: 2.3rem;
+  letter-spacing: 0.17rem;
+  color: #807979;
 }
 
 /*footer*/

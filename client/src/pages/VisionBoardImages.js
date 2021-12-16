@@ -52,11 +52,10 @@ const VisionBoardImages = () => {
       <Message>{message}</Message>
       {/* TODO:  */}
       <div className='add-images-instructions'>
-        <h3>Click the Add Image button to add an image to the vision board.</h3>
+        <h3>Click the Add Image button to add an image to the vision board</h3>
         <p>
-          You can add multiple images and delete them by clicking the star.{' '}
-          <br></br>When finished, go to <b>My Vision Boards</b> to view the
-          vision board.
+          You can add multiple images and delete them by clicking ~ <br></br>
+          When finished, go to <b>My Vision Boards</b> to view the vision board
         </p>
       </div>
     </div>

@@ -36,7 +36,7 @@ export default function AddVideo(props) {
 
   return (
     <>
-      <h4 className='add-video-header'>Add a Video</h4>
+      <h5 className='add-video-header'>Add a Video</h5>
       <Form onSubmit={handleSubmit} className='video-form'>
         <Form.Group controlId='title' className='mb-3'>
           <Form.Control

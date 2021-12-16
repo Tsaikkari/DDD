@@ -91,7 +91,7 @@ const VideoList = () => {
             <Form.Group controlId='title'>
               <Form.Control
                 type='text'
-                placeholder='Search from your videos'
+                placeholder='Search from saved videos'
                 value={query}
                 name='title'
                 onChange={(e) => setQuery(e.target.value)}

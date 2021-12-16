@@ -18,16 +18,16 @@ const VisionBoard = ({ title, images, id, refreshVisionBoards }) => {
   }
   return (
     <div className='vision-board'>
-      <div className='text-trash'>
+      <div className='title-trash'>
         <p className='vision-board-title'>{title}</p>
         <p
-          className='delete'
+          className='delete vision-board-delete'
           onClick={() => {
             deleteVisionBoard(id)
           }}
         >
           {' '}
-          *
+          ~
         </p>
       </div>
       <Row>

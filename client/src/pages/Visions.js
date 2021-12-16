@@ -51,10 +51,9 @@ const Visions = () => {
             <h3>
               Create a vision board by clicking on the <b>Add Board</b> button.
             </h3>
-            <h4>Give the vision board a title and click Save.</h4>
             <p>
-              You can add multiple vision boards and delete them by clicking the
-              little star on upper right corner.
+              You can add multiple vision boards and delete them<br></br> by
+              clicking on the ~ sign on the upper right corner.
             </p>
           </div>
         ) : (
