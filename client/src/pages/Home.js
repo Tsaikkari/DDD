@@ -16,6 +16,7 @@ export default function Home() {
         justifyContent: 'center',
       }}
     >
+    <div className='home-container'>
       <h1 className='homepage-header'>DAILY DOSE OF DOPAMINE</h1>
     </div>
   )

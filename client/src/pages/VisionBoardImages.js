@@ -34,6 +34,7 @@ const VisionBoardImages = () => {
 
   useEffect(() => {
     getImgBoxes()
+    //eslint-disable-next-line
   }, [])
   return (
     <div>
@@ -50,7 +51,14 @@ const VisionBoardImages = () => {
       {errorMessage && <Message variant='danger'>{errorMessage}</Message>}
       <Message>{message}</Message>
       {/* TODO:  */}
-      <h1>Instructions on how to create a vision board. </h1>
+      <div className='add-images-instructions'>
+        <h3>Click the Add Image button to add an image to the vision board.</h3>
+        <p>
+          You can add multiple images and delete them by clicking the star.{' '}
+          <br></br>When finished, go to <b>My Vision Boards</b> to view the
+          vision board.
+        </p>
+      </div>
     </div>
   )
 }
