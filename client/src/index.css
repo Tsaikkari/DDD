@@ -29,6 +29,12 @@ body {
   padding-left: 68%;
 }
 
+/*home page*/
+.homepage-header {
+  font-size: 60px;
+  margin-top: 17%;
+}
+
 /*form button*/
 .save-btn {
   background-color: black !important;
@@ -114,7 +120,8 @@ body {
   border: none;
 }
 
-.video-form {
+.video-form,
+.video-search {
   display: flex;
 }
 
@@ -126,7 +133,8 @@ body {
   display: flex;
 }
 
-.add-video-btn {
+.add-video-btn,
+.search-btn {
   max-width: 92.5%;
   margin: 0 0 0 0.4rem;
 }
@@ -135,10 +143,8 @@ body {
   margin-top: 0.7rem;
 }
 
-/*search-box*/
-.search-input {
-  margin: 2.3rem 0;
-  max-width: 100%;
+.delete {
+  font-size: 1.8rem;
 }
 
 /*add vision board*/
@@ -159,7 +165,8 @@ body {
 }
 
 .add-imgbox-btn,
-.save-img-btn {
+.save-img-btn,
+.search-btn {
   background: #000;
   color: pink;
 }
@@ -181,7 +188,7 @@ body {
 
 .text-trash {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .boards {

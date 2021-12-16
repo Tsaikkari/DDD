@@ -28,7 +28,7 @@ const Video = ({ title, url, id, refreshVideos }) => {
             }}
           >
             {' '}
-            *
+            ~
           </p>
         </div>
       </div>
