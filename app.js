@@ -17,7 +17,7 @@ const imageBoxRouter = require('./routes/imageBox')
 
 app.use('/auth', auth)
 app.use('/api/users', isAuthenticated, userRouter)
-app.use('/api/videos', videoRouter)
+app.use('/api/videos', isAuthenticated, videoRouter)
 app.use('/api/visions', visionBoardRouter)
 app.use('/api/imgboxes', imageBoxRouter)
 

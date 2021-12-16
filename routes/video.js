@@ -16,7 +16,30 @@ router.get('/', async (req, res, next) => {
 })
 
 // get logged in user videos /api/videos/user-videos
-router.get('/user-videos', isAuthenticated, async (req, res, next) => {
+router.get('/user-videos', async (req, res, next) => {
+  try {
+    const videos = await Video.find({ user: req.payload })
+    res.status(200).json(videos)
+  } catch (err) {
+    next(new Error(err.message))
+  }
+})
+
+// get videos filtered by title
+router.get('/user-videos?title=:query', async (req, res, next) => {
+  try {
+    const video = await Video.find({
+      user: req.payload,
+      title: req.query.title,
+    })
+    res.status(200).json(video)
+  } catch (err) {
+    next(new Error(err.message))
+  }
+})
+
+// get logged in user videos /api/videos/user-videos
+router.get('/user-videos', async (req, res, next) => {
   try {
     const videos = await Video.find({ user: req.payload })
     res.status(200).json(videos)
@@ -66,9 +89,8 @@ router.get('/:id', async (req, res, next) => {
 // delete video /api/videos/:id
 router.delete('/:id', async (req, res, next) => {
   try {
-    await Video.findByIdAndDelete(req.params.id).then(() => {
-      res.status(200).json({ message: 'video deleted' })
-    })
+    await Video.findByIdAndDelete(req.params.id)
+    res.status(204).end()
   } catch (err) {
     next(new Error(err.message))
   }

@@ -97,10 +97,23 @@ body {
   font-weight: 600;
 }
 
-/*add video*/
-.video-container {
-  margin: 1rem 3.8rem;
+/*video*/
+.video-row {
+  padding: 1rem 0;
+  border: solid 1px #ccc;
+  border-radius: 5px;
 }
+
+.col-md-8,
+.col-md-4 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.video-card {
+  border: none;
+}
+
 .video-form {
   display: flex;
 }

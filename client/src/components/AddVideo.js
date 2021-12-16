@@ -34,7 +34,6 @@ export default function AddVideo(props) {
       await axios.post('/api/videos', video, config)
       setTitle('')
       setUrl('')
-      // this triggers a function in VideoList
       props.refreshVideos()
     } catch (err) {
       console.log(err)
