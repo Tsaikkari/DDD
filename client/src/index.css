@@ -29,6 +29,11 @@ body {
   padding-left: 68%;
 }
 
+/*home page*/
+.homepage-header {
+  font-size: 60px;
+  margin-top: 17%;
+}
 /*form button*/
 .save-btn {
   background-color: black !important;
@@ -97,23 +102,39 @@ body {
   font-weight: 600;
 }
 
-/*add video*/
+/*video*/
 .video-container {
   margin: 1rem 3.8rem;
 }
-.video-form {
+
+.video-card {
+  width: 29.66vw;
+}
+
+.text-trash.video {
+  margin: 0 0.5rem;
+}
+
+.video-form,
+.video-search {
   display: flex;
 }
 
+.video-search {
+  margin: 2.3rem 0;
+  max-width: 100%;
+}
+
 .url-input {
-  margin-left: 0.8rem;
+  margin-left: 0.4rem;
 }
 
 .add-video-header {
   display: flex;
 }
 
-.add-video-btn {
+.add-video-btn,
+.search-btn {
   max-width: 92.5%;
   margin: 0 0 0 0.4rem;
 }
@@ -122,13 +143,11 @@ body {
   margin-top: 0.7rem;
 }
 
-/*search-box*/
-.search-input {
-  margin: 2.3rem 0;
-  max-width: 100%;
+.delete {
+  font-size: 1.8rem;
 }
 
-/*add vision board*/
+/*vision board*/
 .vision-board-form-container {
   display: flex;
   margin-left: 1.3rem;
@@ -146,7 +165,8 @@ body {
 }
 
 .add-imgbox-btn,
-.save-img-btn {
+.save-img-btn,
+.search-btn {
   background: #000;
   color: pink;
 }

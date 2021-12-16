@@ -6,6 +6,7 @@ import axios from 'axios'
 import { AuthContext } from '../context/auth'
 import Message from '../components/Message'
 import Footer from '../components/Footer'
+import { config } from '../reqHeaders'
 
 const Profile = () => {
   const [name, setName] = useState('')
@@ -27,17 +28,11 @@ const Profile = () => {
         setEmail(response.data.email)
       })
       .catch((err) => console.log(err))
+    //eslint-disable-next-line
   }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${storedToken}`,
-      },
-    }
-
     const updateUser = { email, name }
 
     axios
@@ -72,11 +67,11 @@ const Profile = () => {
                     Create your vision boards
                   </Link>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                {/* <ListGroup.Item>
                   <Link to='notes' className='link'>
                     Take beautiful notes
                   </Link>
-                </ListGroup.Item>
+                </ListGroup.Item> */}
               </ListGroup>
               <Image src='' alt='' className='profile-page-img' />
             </Col>

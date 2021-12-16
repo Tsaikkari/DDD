@@ -5,7 +5,7 @@ const User = require('../models/User.model')
 const { isAuthenticated } = require('./../middleware/jwt.js')
 
 // get all videos /api/videos
-router.get('/', async (req, res, next) => {
+router.get('/', isAuthenticated, async (req, res, next) => {
   try {
     const videos = await Video.find({}).populate('user', 'id name')
     res.status(200).json(videos)
@@ -20,9 +20,7 @@ router.get(
   '/user-videos?title=:query',
   isAuthenticated,
   async (req, res, next) => {
-    console.log(req.query, 'REQQUERY')
     try {
-      console.log('res-data', res.data)
       const video = await Video.find({
         user: req.payload,
         title: req.query.title,
@@ -45,7 +43,7 @@ router.get('/user-videos', isAuthenticated, async (req, res, next) => {
 })
 
 // add a video /api/videos
-router.post('/', async (req, res, next) => {
+router.post('/', isAuthenticated, async (req, res, next) => {
   try {
     const { title, url, user } = req.body
     if (!url || !user || !title) {
@@ -66,7 +64,7 @@ router.post('/', async (req, res, next) => {
 })
 
 // get a video /api/video/:id
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', isAuthenticated, async (req, res, next) => {
   try {
     const video = await Video.findById(req.params.id).populate(
       'user',
@@ -83,7 +81,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 // delete video /api/videos/:id
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAuthenticated, async (req, res, next) => {
   try {
     await Video.findByIdAndDelete(req.params.id)
     res.status(204).end()

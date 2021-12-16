@@ -28,11 +28,11 @@ const Header = () => {
                   <i className='fab fa-wpexplorer'></i> My Vision Boards
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/visionboards'>
+              {/* <LinkContainer to='/visionboards'>
                 <Nav.Link>
                   <i className='fas fa-clipboard'></i> My Notes
                 </Nav.Link>
-              </LinkContainer>
+              </LinkContainer> */}
               <NavDropdown title={user.name} id='username'>
                 <LinkContainer to='/profile'>
                   <NavDropdown.Item>Profile</NavDropdown.Item>
