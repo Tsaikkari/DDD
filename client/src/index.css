@@ -105,7 +105,7 @@ body {
 /*video*/
 .video-container {
   width: 96%;
-  margin: 1rem auto;
+  margin: 1rem 1.4rem 0 auto;
 }
 
 .video-card {
@@ -113,7 +113,7 @@ body {
 }
 
 .text-trash.video {
-  padding: 0 1rem;
+  padding: 0 1.6rem;
 }
 
 .video-form,
