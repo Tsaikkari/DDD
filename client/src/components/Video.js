@@ -17,7 +17,7 @@ const Video = ({ title, url, id, refreshVideos }) => {
   }
   return (
     <Draggable>
-      <Card className='video-card'>
+      <div className='video-card'>
         <iframe title={title} width='477' height='315' src={url}></iframe>
         <div className='text-trash video'>
           <p className='video-title'>{title}</p>
@@ -31,7 +31,7 @@ const Video = ({ title, url, id, refreshVideos }) => {
             *
           </p>
         </div>
-      </Card>
+      </div>
     </Draggable>
   )
 }

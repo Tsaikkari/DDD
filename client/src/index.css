@@ -103,17 +103,20 @@ body {
 }
 
 /*video*/
-.video-container {
-  width: 96%;
-  margin: 1rem 1.4rem 0 auto;
+.video-row {
+  padding: 1rem 0;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+}
+
+.col-md-8,
+.col-md-4 {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .video-card {
   border: none;
-}
-
-.text-trash.video {
-  padding: 0 1.6rem;
 }
 
 .video-form,
@@ -189,7 +192,7 @@ body {
 
 .text-trash {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .boards {

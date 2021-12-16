@@ -74,7 +74,7 @@ const VideoList = () => {
   }, [])
 
   return (
-    <div className='video-container'>
+    <Container>
       <Row>
         <Col md={8}>
           <AddVideo refreshVideos={getVideos} videos={videos} />
@@ -86,7 +86,7 @@ const VideoList = () => {
             setQueryTerm={setQueryTerm}
           />
         </Col> */}
-        <Col md={3}>
+        <Col md={4}>
           <Form onSubmit={handleSearch} className='video-search'>
             <Form.Group controlId='title'>
               <Form.Control
@@ -103,9 +103,9 @@ const VideoList = () => {
           </Form>
         </Col>
       </Row>
-      <Row>
+      <Row className='video-row'>
         {videos.map((video) => (
-          <Col key={video._id} sm={12} md={6} lg={4} xl={4}>
+          <Col key={video._id} sm={12} md={6} lg={4} xl={6}>
             <Video
               title={video.title}
               url={video.url}
@@ -115,7 +115,7 @@ const VideoList = () => {
           </Col>
         ))}
       </Row>
-    </div>
+    </Container>
   )
 }
 
