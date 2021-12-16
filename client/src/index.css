@@ -104,12 +104,12 @@ body {
 
 /*video*/
 .video-container {
-  margin: 1rem 3.8rem;
+  width: 96%;
+  margin: 1rem auto;
 }
 
 .video-card {
   border: none;
-  width: 24vw;
 }
 
 .text-trash.video {

@@ -76,7 +76,7 @@ const VideoList = () => {
   return (
     <div className='video-container'>
       <Row>
-        <Col md={9}>
+        <Col md={8}>
           <AddVideo refreshVideos={getVideos} videos={videos} />
         </Col>
         {/* <Col md={3}>
