@@ -4,7 +4,7 @@ import axios from 'axios'
 import VisionsHeader from '../components/VisionsHeader'
 import VisionBoard from '../components/VisionBoard'
 import AddVisionBoard from '../components/AddVisionBoard'
-import collage from '../images/collage.jpg'
+import collage from '../images/collage.jpg
 
 const Visions = () => {
   const [boards, setBoards] = useState([])
@@ -26,6 +26,7 @@ const Visions = () => {
 
   useEffect(() => {
     getVisionBoards()
+    //eslint-disable-next-line
   }, [])
 
   const handleShowVisionBoardForm = () => {

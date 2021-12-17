@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Form, Row, Col, Button } from 'react-bootstrap'
+import { Form, Row, Col, Card, Button } from 'react-bootstrap'
 import axios from 'axios'
 
 import Message from '../components/Message'
@@ -66,6 +66,17 @@ const Login = () => {
           Don't have an account? <Link to={'/signup'}>Sign Up</Link>
         </Col>
       </Row>
+      {/* <Form>
+        <Card>
+          <a
+            className='btn btn-block btn-social btn-google'
+            href='http://localhost:5005/api/auth/google/dailydose'
+          >
+            <i className='fab fa-google'></i>
+            Login with Google
+          </a>
+        </Card>
+      </Form> */}
     </FormContainer>
   )
 }

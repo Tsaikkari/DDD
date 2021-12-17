@@ -35,6 +35,7 @@ const VisionBoardImages = () => {
 
   useEffect(() => {
     getImgBoxes()
+    //eslint-disable-next-line
   }, [])
   return (
     <div>
