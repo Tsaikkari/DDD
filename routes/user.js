@@ -1,9 +1,8 @@
 const router = require('express').Router()
 const User = require('../models/User.model')
-const { isAuthenticated } = require('./../middleware/jwt.js')
 
 // get users /api/users
-router.get('/', isAuthenticated, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await User.find()
     res.status(200).json(users)
@@ -13,7 +12,7 @@ router.get('/', isAuthenticated, async (req, res, next) => {
 })
 
 // get user profile /api/users/profile
-router.get('/profile', isAuthenticated, async (req, res, next) => {
+router.get('/profile', async (req, res, next) => {
   try {
     const user = await User.findById(req.payload._id).select('-password')
 
@@ -32,7 +31,7 @@ router.get('/profile', isAuthenticated, async (req, res, next) => {
 })
 
 // update user /api/users/:id
-router.put('/:id', isAuthenticated, async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -45,7 +44,7 @@ router.put('/:id', isAuthenticated, async (req, res, next) => {
 })
 
 // delete user /api/users/:id
-router.delete('/:id', isAuthenticated, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id)
     const deletedUser = await User.findByIdAndRemove(user._id)

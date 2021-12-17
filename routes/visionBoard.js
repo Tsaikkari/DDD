@@ -1,10 +1,7 @@
 const router = require('express').Router()
-const uploader = require('../config/cloudinary.config')
 
 const VisionBoard = require('../models/VisionBoard.model')
-const ImageBox = require('../models/ImageBox.model')
 const User = require('../models/User.model')
-const { isAuthenticated } = require('./../middleware/jwt.js')
 
 // get all vision boards /api/visions
 router.get('/', async (req, res, next) => {

@@ -2,7 +2,6 @@ const router = require('express').Router()
 
 const Video = require('../models/Video.model')
 const User = require('../models/User.model')
-const { isAuthenticated } = require('./../middleware/jwt.js')
 
 // get all videos /api/videos
 router.get('/', async (req, res, next) => {
@@ -77,7 +76,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 // delete video /api/videos/:id
-router.delete('/:id', isAuthenticated, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     await Video.findByIdAndDelete(req.params.id)
     res.status(204).end()
