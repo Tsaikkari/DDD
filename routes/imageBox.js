@@ -3,9 +3,10 @@ const router = require('express').Router()
 const VisionBoard = require('../models/VisionBoard.model')
 const ImageBox = require('../models/ImageBox.model')
 const User = require('../models/User.model')
+const { isAuthenticated } = require('./../middleware/jwt.js')
 
 // get image boxes
-router.get('/', async (req, res, next) => {
+router.get('/', isAuthenticated, async (req, res, next) => {
   try {
     const imgBoxes = await ImageBox.find({})
     res.status(200).json(imgBoxes)
@@ -14,8 +15,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// upload image to Cloudinary
+router.post('/', uploader.single('image'), (req, res, next) => {
+  try {
+    res.json({ secure_url: req.file.path })
+  } catch (err) {
+    next(new Error(err))
+  }
+})
+
 // add image box to vision board
-router.post('/', async (req, res, next) => {
+router.post('/', isAuthenticated, async (req, res, next) => {
   try {
     const { text, user, id, imgPath } = req.body
     if (!imgPath || !user || !id) {
@@ -46,7 +56,7 @@ router.post('/', async (req, res, next) => {
 })
 
 // delete imgbox /api/imgboxes/:id
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAuthenticated, async (req, res, next) => {
   try {
     await ImageBox.findByIdAndDelete(req.params.id)
     res.status(204).end()
