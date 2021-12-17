@@ -4,6 +4,7 @@ import axios from 'axios'
 import ImgBoxesHeader from '../components/ImgBoxesHeader'
 import AddImgBox from '../components/AddImgBox'
 import Message from '../components/Message'
+import pictures from '../images/pictures.jpg'
 
 const VisionBoardImages = () => {
   const [boxes, setBoxes] = useState([])
@@ -49,8 +50,22 @@ const VisionBoardImages = () => {
       )}
       {errorMessage && <Message variant='danger'>{errorMessage}</Message>}
       <Message>{message}</Message>
-      {/* TODO:  */}
-      <h1>Instructions on how to create a vision board. </h1>
+      <div
+        className='add-images-instructions'
+        style={{
+          backgroundImage: `url(${pictures})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          height: '90vh',
+          width: '100vw',
+        }}
+      >
+        <h3>Click the Add Image button to add an image to the vision board</h3>
+        <p>
+          You can add multiple images and delete them by clicking ~ <br></br>
+          When finished, go to <b>My Vision Boards</b> to view the vision board
+        </p>
+      </div>
     </div>
   )
 }

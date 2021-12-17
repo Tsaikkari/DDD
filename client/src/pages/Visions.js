@@ -4,6 +4,7 @@ import axios from 'axios'
 import VisionsHeader from '../components/VisionsHeader'
 import VisionBoard from '../components/VisionBoard'
 import AddVisionBoard from '../components/AddVisionBoard'
+import collage from '../images/collage.jpg'
 
 const Visions = () => {
   const [boards, setBoards] = useState([])
@@ -44,7 +45,28 @@ const Visions = () => {
           />
         )}
         {boards.length === 0 ? (
-          <p>Instructions</p>
+          <div
+            className='vision-board-instructions'
+            style={{
+              backgroundImage: `url(${collage})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              height: '90vh',
+              width: '100vw',
+            }}
+          >
+            <h1>
+              <b>
+                Create a vision board by clicking on the <b>Add Board</b> button
+              </b>
+            </h1>
+            {/* <p>
+                <b>
+                  You can add multiple vision boards and delete them<br></br> by
+                  clicking on the ~ sign on the upper right corner.
+                </b>
+              </p> */}
+          </div>
         ) : (
           <div className='boards'>
             {boards.map((board) => (
