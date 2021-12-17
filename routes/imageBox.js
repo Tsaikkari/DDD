@@ -7,7 +7,7 @@ const User = require('../models/User.model')
 const { isAuthenticated } = require('./../middleware/jwt.js')
 
 // get image boxes
-router.get('/', isAuthenticated, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const imgBoxes = await ImageBox.find({})
     res.status(200).json(imgBoxes)
@@ -26,7 +26,7 @@ router.post('/upload', uploader.single('image'), (req, res, next) => {
 })
 
 // add image box to vision board
-router.post('/', isAuthenticated, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const { text, user, id, imgPath } = req.body
     if (!imgPath || !user || !id) {
@@ -57,7 +57,7 @@ router.post('/', isAuthenticated, async (req, res, next) => {
 })
 
 // delete imgbox /api/imgboxes/:id
-router.delete('/:id', isAuthenticated, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     await ImageBox.findByIdAndDelete(req.params.id)
     res.status(204).end()

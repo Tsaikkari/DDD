@@ -5,7 +5,7 @@ const User = require('../models/User.model')
 const { isAuthenticated } = require('./../middleware/jwt.js')
 
 // get all videos /api/videos
-router.get('/', isAuthenticated, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const videos = await Video.find({}).populate('user', 'id name')
     res.status(200).json(videos)
@@ -16,7 +16,7 @@ router.get('/', isAuthenticated, async (req, res, next) => {
 })
 
 // get logged in user videos /api/videos/user-videos
-router.get('/user-videos', isAuthenticated, async (req, res, next) => {
+router.get('/user-videos', async (req, res, next) => {
   try {
     const videos = await Video.find({ user: req.payload })
     res.status(200).json(videos)
@@ -39,7 +39,7 @@ router.get('/user-videos?title=:query', async (req, res, next) => {
 })
 
 // add a video /api/videos
-router.post('/', isAuthenticated, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const { title, url, user } = req.body
     if (!url || !user || !title) {
@@ -60,7 +60,7 @@ router.post('/', isAuthenticated, async (req, res, next) => {
 })
 
 // get a video /api/video/:id
-router.get('/:id', isAuthenticated, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const video = await Video.findById(req.params.id).populate(
       'user',

@@ -20,9 +20,9 @@ const imageBoxRouter = require('./routes/imageBox')
 
 app.use('/auth', auth)
 app.use('/api/users', isAuthenticated, userRouter)
-app.use('/api/videos', videoRouter)
+app.use('/api/videos', isAuthenticated, videoRouter)
 app.use('/api/visions', isAuthenticated, visionBoardRouter)
-app.use('/api/imgboxes', imageBoxRouter)
+app.use('/api/imgboxes', isAuthenticated, imageBoxRouter)
 
 app.use((req, res) => {
   // If no routes match, send them the React HTML.
