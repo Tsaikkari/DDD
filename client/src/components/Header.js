@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <Navbar bg='light' expand='lg' collapseOnSelect className='navbar'>
       <LinkContainer to='/'>
-        <Navbar.Brand>DDD</Navbar.Brand>
+        <Navbar.Brand>DDD 😉</Navbar.Brand>
       </LinkContainer>
 
       <Navbar.Toggle aria-controls='basic-navbar-nav' />

@@ -4,12 +4,11 @@ import axios from 'axios'
 import VisionsHeader from '../components/VisionsHeader'
 import VisionBoard from '../components/VisionBoard'
 import AddVisionBoard from '../components/AddVisionBoard'
+import collage from '../images/collage.jpg
 
 const Visions = () => {
   const [boards, setBoards] = useState([])
   const [addBoard, setAddBoard] = useState(false)
-
-  //add search by title or date
 
   const storedToken = localStorage.getItem('authToken')
 
@@ -47,15 +46,27 @@ const Visions = () => {
           />
         )}
         {boards.length === 0 ? (
-          <div className='vision-board-instructions'>
-            <h3>
-              Create a vision board by clicking on the <b>Add Board</b> button.
-            </h3>
-            <h4>Give the vision board a title and click Save.</h4>
-            <p>
-              You can add multiple vision boards and delete them by clicking the
-              little star on upper right corner.
-            </p>
+          <div
+            className='vision-board-instructions'
+            style={{
+              backgroundImage: `url(${collage})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              height: '90vh',
+              width: '100vw',
+            }}
+          >
+            <h1>
+              <b>
+                Create a vision board by clicking on the <b>Add Board</b> button
+              </b>
+            </h1>
+            {/* <p>
+                <b>
+                  You can add multiple vision boards and delete them<br></br> by
+                  clicking on the ~ sign on the upper right corner.
+                </b>
+              </p> */}
           </div>
         ) : (
           <div className='boards'>

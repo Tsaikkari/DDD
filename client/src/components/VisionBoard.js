@@ -27,7 +27,7 @@ const VisionBoard = ({ title, images, id, refreshVisionBoards }) => {
           }}
         >
           {' '}
-          *
+          ~
         </p>
       </div>
       <Row>
