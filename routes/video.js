@@ -2,6 +2,7 @@ const router = require('express').Router()
 
 const Video = require('../models/Video.model')
 const User = require('../models/User.model')
+const { isAuthenticated } = require('./../middleware/jwt.js')
 
 // get all videos /api/videos
 router.get('/', async (req, res, next) => {
@@ -15,7 +16,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // get logged in user videos /api/videos/user-videos
-router.get('/user-videos', async (req, res, next) => {
+router.get('/user-videos', isAuthenticated, async (req, res, next) => {
   try {
     const videos = await Video.find({ user: req.payload })
     res.status(200).json(videos)
