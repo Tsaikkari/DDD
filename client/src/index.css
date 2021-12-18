@@ -36,8 +36,8 @@ body {
 
 /*form button*/
 .save-btn {
-  background-color: black !important;
-  color: pink !important;
+  background-color: black;
+  color: pink;
   width: 100%;
   margin: 1.9rem 0 0.1rem;
 }

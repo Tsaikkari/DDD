@@ -91,9 +91,7 @@ router.post('/login', async (req, res, next) => {
 // verify token
 router.get('/verify', isAuthenticated, async (req, res, next) => {
   try {
-    // if the token is valid we can access it on : req.payload
     res.status(200).json(req.payload)
-    console.log('USER', req.payload)
   } catch (err) {
     next(new Error(err))
   }
