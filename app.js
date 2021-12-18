@@ -17,14 +17,17 @@ const userRouter = require('./routes/user')
 const videoRouter = require('./routes/video')
 const visionBoardRouter = require('./routes/visionBoard')
 const imageBoxRouter = require('./routes/imageBox')
-const youTubeRouter = require('./routes/youtube')
 
 app.use('/auth', auth)
 app.use('/api/users', isAuthenticated, userRouter)
 app.use('/api/videos', videoRouter)
 app.use('/api/visions', isAuthenticated, visionBoardRouter)
 app.use('/api/imgboxes', imageBoxRouter)
-app.use('/api/youtube', youTubeRouter)
+
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + '/client/build/index.html')
+})
 
 app.use((req, res) => {
   // If no routes match, send them the React HTML.

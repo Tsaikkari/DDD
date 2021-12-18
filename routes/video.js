@@ -38,6 +38,19 @@ router.get('/user-videos', async (req, res, next) => {
   }
 })
 
+// get videos filtered by title
+router.get('/user-videos?title=:query', async (req, res, next) => {
+  try {
+    const video = await Video.find({
+      user: req.payload,
+      title: req.query.title,
+    })
+    res.status(200).json(video)
+  } catch (err) {
+    next(new Error(err.message))
+  }
+})
+
 // add a video /api/videos
 router.post('/', async (req, res, next) => {
   try {

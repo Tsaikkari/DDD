@@ -1,8 +1,6 @@
 const router = require('express').Router()
-const uploader = require('../config/cloudinary.config')
 
 const VisionBoard = require('../models/VisionBoard.model')
-const ImageBox = require('../models/ImageBox.model')
 const User = require('../models/User.model')
 
 // get all vision boards /api/visions
