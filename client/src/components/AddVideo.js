@@ -46,14 +46,14 @@ export default function AddVideo(props) {
             onChange={(e) => setTitle(e.target.value)}
           />
         </Form.Group>
-        {/* <Form.Group controlId='url' className='mb-3 url-input'>
+        <Form.Group controlId='url' className='mb-3 url-input'>
           <Form.Control
             type='text'
             placeholder='Enter YouTube Video URL'
             value={url}
             onChange={handleUrl}
           ></Form.Control>
-        </Form.Group> */}
+        </Form.Group>
         <Form.Group>
           <Button type='submit' className='save-btn add-video-btn'>
             Save
