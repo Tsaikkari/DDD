@@ -74,8 +74,8 @@ const VideoList = () => {
   }, [])
 
   return (
-    <Container>
-      <Row>
+    <Container className='video-container'>
+      <Row className='video-inputs-row'>
         <Col md={8}>
           <AddVideo refreshVideos={getVideos} videos={videos} />
         </Col>
@@ -105,7 +105,14 @@ const VideoList = () => {
       </Row>
       <Row className='video-row'>
         {videos.map((video) => (
-          <Col key={video._id} sm={12} md={6} lg={4} xl={6}>
+          <Col
+            className='video-col'
+            key={video._id}
+            sm={12}
+            md={6}
+            lg={4}
+            xl={6}
+          >
             <Video
               title={video.title}
               url={video.url}

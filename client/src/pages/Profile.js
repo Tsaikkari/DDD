@@ -54,7 +54,7 @@ const Profile = () => {
   return (
     <>
       {isLoggedIn && (
-        <>
+        <div className='profile'>
           <h1 className='greeting'>Hey, {user.name} ❦</h1>
           <Row className='profile-row'>
             <Col className='info-col' md={8}>
@@ -81,7 +81,7 @@ const Profile = () => {
               <Image src='' alt='' className='profile-page-img' />
             </Col>
 
-            <Col className='form-col' md={3}>
+            <Col className='form-col profile-update-form' md={3}>
               <h1 className='form-header m-4'>Update Your Info</h1>
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId='name'>
@@ -112,7 +112,7 @@ const Profile = () => {
             {isLoading && <h3>Loading ...</h3>}
             {errorMessage && <Message variant='danger'>{errorMessage}</Message>}
           </Row>
-        </>
+        </div>
       )}
       <Footer />
     </>
