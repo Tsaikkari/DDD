@@ -1,6 +1,7 @@
 # Daily Dose of Dopamine
 
 This project is about raising one's happiness level.
+https://daily-dose-of-dopamine.herokuapp.com/
 
 ## INSTALL
 
