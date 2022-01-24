@@ -40,7 +40,6 @@ const Visions = () => {
           <AddVisionBoard
             addBoard={addBoard}
             setAddBoard={setAddBoard}
-            boards={boards}
             refreshVisionBoards={getVisionBoards}
           />
         )}

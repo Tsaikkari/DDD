@@ -35,7 +35,7 @@ const Login = () => {
 
   return (
     <FormContainer>
-      <h1 className='m-4'>Login</h1>
+      <h1 className='joku'>Login</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>

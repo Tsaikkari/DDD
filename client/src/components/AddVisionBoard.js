@@ -16,15 +16,17 @@ const AddVisionBoard = ({ addBoard, setAddBoard, refreshVisionBoards }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const newBoard = { title, user }
-      const res = await axios.post('/api/visions', newBoard, config)
+      if (config) {
+        const newBoard = { title, user }
+        const res = await axios.post('/api/visions', newBoard, config)
 
-      setTitle('')
-      setAddBoard(!addBoard)
-      refreshVisionBoards()
+        setTitle('')
+        setAddBoard(!addBoard)
+        refreshVisionBoards()
 
-      // redirects to VisionBoardImages page
-      navigate(`/visionboards/${res.data._id}`)
+        // redirects to VisionBoardImages page
+        navigate(`/visionboards/${res.data._id}`)
+      }
     } catch (err) {
       console.log(err)
     }
